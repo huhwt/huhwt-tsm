@@ -1,0 +1,518 @@
+/**
+* Icon converted via: https://base64.guru/converter/encode/image
+* Zusätzliche Steuerelemente Tagging Service Manager
+*/
+
+.tsm-page-options {
+    display: flex;
+}
+
+.tsm_buttongroup {
+    display: flex;
+}
+    .tsm_buttongroup span {
+        display: inline;
+    }
+    .tsm_buttongroup>input[type=number] {
+        -moz-appearance:textfield;
+        appearance:textfield;
+        height: 26px;
+        width: 46px;
+        margin: 0;
+    }
+    .tsm_buttongroup>input[type=number]::-webkit-inner-spin-button, 
+    .tsm_buttongroup>input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        height: 26px;
+        width: 46px;
+    }
+
+    .tsm_button {
+    /* display: inline-flex; */
+    /* position: relative; */
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border: thin solid #efefef;
+    background-color: #efefef;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .tsm_button:hover {
+        border: thin outset #fdfffd;
+        cursor: pointer;
+    }
+
+.bPlus {
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEeSURBVEhLY2QgAtRP3/T/9O5VDP///WZQFuFmKC9MYpDVtsGrlwlK4wRnH3z6f/H0IbChIHD3zVeGS8cPgNn4AEGD/4MxiESA//9R+dgAQYPJBaMGwwHNDAanxY7py/8/unkZGN2/wfGPnEC///7H8PLlS4b/fyHJDQRE+DgYeAXFoDxIyoHpEeXlZAj1tmRg7F9/7v+uhd1AoX8QGSoADU5gUHz7/gPIJJwuSQHfvwMN5uLkADKJytlEA06gi2kXxlA+TnAGWFY0NzUy/Hr3BCrCwJDtrcPgk1qLV+9oBoGDYWgwKOoZ0RIPIyPBxETYYGMFPkZ9UzsGRiZWMB9U5+lZOoDZ+ABhq6EAVKaAsj8wpz4oDDRShArjAAwMAHA+ZOlwX6lRAAAAAElFTkSuQmCC');
+    align-content: center;
+}
+.bMinus {
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACcSURBVEhLYxgFo4B+gBFKM1y7cff///9/oDzyAS8HG4OcoiIj47F77//P6e9j+PLhBQPD/39QafIBByszQ6CVCgNj56qT/w8s6wcK/YfIUAEoszAwMP358xfKpR74AwxRJikJYWBIs0KFqAMkJTkhkbd6x9H/j25dY/j//zdYglwAMkyUl4PB0dYIIjAKRsEQB4zAIg3KpCZgYAAAFx8p8F5SZ9kAAAAASUVORK5CYII=');
+    align-content: center;
+}
+
+[dir] .btn-link {
+    padding: 0rem .125rem  0rem .125rem !important;
+  }
+
+.tsm_disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: #efefef52 !important;
+}
+
+.wt-icon-basket{
+    content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAALWSURBVDhPrVRNTBNREH67pUtp1/5BG2Jr06a0TTkIh5qGCCmJlKR64G7ChcQUwWjlYIxXDySmF0/EHkAPHhoiwsEDHuSAgaZIaqAGIZGQECVYWmkLLf2h9XvLgnqwRuOXvJ15Mzvfm52Zt+R/gRGlgFAoJIlGo7a5uTnicDgub2xsXKpUKoKvsbExpVAoptPpdGZwcHDP7/fvCQ4RZ0Tj4+PnFhYWRpeWljzZbPagrq7OVC6Xz4tuwrJsHuIjwzAlq9XK9fb23hgZGXl34oVflGRzc9Mdj8ev63S6UWxvtrS0PEJwGLqwtFrthNFovIsDbu3v72cikcjtWCwmo7G/YGBg4H5PT88ncVsT/f39ge7u7uVgMNgsmn5khG+/olKplsVtTbhcrhUIx9ramv7EIhLNzMxYQGSSSqXzgvUPaG9vj0IcNzU1dZ5YUOyhoSG1wWC4mEqlHqNDD0C6KPpqoq+vLwyi+NTU1MPh4eE809HRsbi7uyu6/x4cxxGPxzPLoDvV01n5V9jt9lm2q6vrXkNDQx5tLaDYIQydMGhqtfot1muqy+Xyb9SHGuYwRxWNRvNMqVRuQSdOp/ONxWK5wwYCgSeYkSQIGJ/PN48XPtBgnudfIeAl1SUSybrZbJ7AXH1FcBHleGqz2SoymYzo9frnY2Nj62xbW1sGAdvVapXL5XI8sqCxhJ72M073IKNdI4VCQVtfX3+IBLYEO31gs4LrQNA5AlJq+i1QAvo5BNeIkidaW1u/ULtAhMq/pycWi8XmUqmUojpqYkB2BuElllUgYznsHOpUSSaTRVwTFgkk3G63QCTki1m6hls/nc/nDxEgOTo64tGAA7iOYVOhRiXon+G7AMmiNtuwGzHhs+Fw+CrlEDLCYK0iq1WcpoLkUXACnad7quNkKZYZDZBgMfTPAHsZ8gWNpzir6OTkpGtnZ6cTp4qW2gBhwmQyTXu93kNCCPkOIFn6vwb0YW8AAAAASUVORK5CYII=');
+    align-content: center;
+}
+
+table + h4 {
+    margin-top: 2rem !important;
+}
+
+.tsm-table {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    --bs-table-border-color: var(--bs-table-border-color);
+    border-collapse: collapse !important;
+    border-spacing: 2px;
+}
+.tsm-thead {
+    display: table-header-group;
+    height: 38px;
+    font-weight: 400;
+    padding: 0.25rem;
+    margin-top: 0.1rem;
+}
+.tsm-tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.TSMfoot.tsm-tr {
+    height: auto;
+    background-color: white;
+}
+
+.tsm-tc1 {
+    width: 82%;
+    margin: 0 0 0 2px;
+}
+.tsm-tc1 .svg-inline--fa {
+    color: black;
+    height: 1.5em;
+}
+
+.tsm-tc2 {
+    width: 17%;
+}
+.tsm-tc2 .svg-inline--fa {
+    color: black;
+    height: 1em;
+}
+
+.tsm-td1 {
+    width: 100%;
+}
+
+.TSMfloat .tsm-td1>.tsm-tc1 {
+    width: 75%;
+}
+.tsm-td1>.tsm-tc2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#TSMshowAll {
+    color: black;
+}
+#TSMshowActive {
+    color: black;
+}
+#TSMhideActive {
+    color: black;
+}
+
+.TSMshow_box {
+    background-color: var(--bs-btn-bg);
+}
+.TSMshow_box > span > svg:hover {
+    color: white;
+}
+.TSMshow_box:hover {
+    color: white;
+    box-shadow: 3px 1px 3px var(--bs-teal);
+}
+.TSMshow_box.active-box svg {
+    color: white;
+}
+
+.TSMtableX.scroll {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 2px solid black;
+}
+thead > tr > th { 
+    height: 38px;
+    line-height: 28px;
+}
+.tsm-thead > .tsm-tr > .tsm-th { 
+    line-height: 20px;
+}
+.tsm-tbody {
+    height: 232px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tsm-tr {
+    height: 33px;
+    padding: 4px;
+}
+
+.tsm-tbody#TSMtaBody { 
+    background-color: white;
+}
+.tsm-tfoot {
+    background-color: white;
+    height: 50px;
+}
+
+.TSM_Theader {
+    background-color: rgba(194, 194, 250, 0.623) !important;
+    border: 1px solid #81a9cb;
+    text-align: left !important;
+    font-size: 1.1rem !important;
+}
+
+.dontShow {
+    visibility: hidden;
+}
+.hiddenLine {
+    display: none;
+}
+
+.lineHalfHeight {
+    height: 0.5rem;
+}
+
+.outlineBlue {
+    border: 1px solid !important;
+    border-color: rgb(82, 82, 252) !important;
+}
+
+.tsm-btn {
+    background-color: var(--bs-btn-bg) !important;
+    width: 100%;
+    height: 90%;
+}
+.tsm-btn:hover {
+    text-align: center;
+    border-style: outset;
+    box-shadow: 10px 1px 5px var(--bs-teal);
+    background: #94BF13;
+    color: white;
+    cursor: pointer;
+}
+.tsm-btn:disabled {
+    background-color: gray !important;
+}
+.tsm-btn-sm {
+    width: 100%;
+    height: 90%;
+}
+.tsm-btn-sm:hover {
+    text-align: center;
+    border-style: outset;
+    box-shadow: 10px 1px 5px var(--bs-teal);
+    background: #94BF13;
+    color: white;
+    cursor: pointer;
+}
+.tsm-btn-sm-2 {
+    width: 80%;
+    height: 100%;
+}
+.tsm-btn-sm-2:disabled {
+    background-color: gray !important;
+}
+.tsm-btn-sm-2>div {
+    width: 30px;
+}
+button.tsm-btn-sm-2 {
+    padding: 0px 10px 5px 0px !important;
+}
+
+.tsm-btn-txt {
+    width: 100%;
+    height: 60%;
+    padding: 0 10px 0 10px !important;
+}
+
+.svg-inline--fa {
+    height: 2em;
+}
+
+.TSMbadge {
+    display: inline-block;
+    border-radius: 0.375rem;
+    padding: 0.15em 0.35em;
+    font-size: 0.6rem;
+    text-align: center
+    }
+
+.TSMbg-secondary {
+    background-color: rgba(208, 208, 208, 0.9)!important
+}
+
+
+.TSMbadge.TSMhighlighted {
+    font-size: 0.9rem;
+}
+
+.TSMbold {
+    font-weight: bolder;
+}
+
+.TSMcolor1 {
+    color: blue;
+}
+.TSMcolor2 {
+    color: red;
+}
+.TSMcolor3 {
+    color: green;
+}
+.TSMcolor4 {
+    color: darkmagenta;
+}
+.TSMcolor5 {
+    color: darkturquoise;
+}
+.TSMcolor6 {
+    color: goldenrod;
+}
+
+.TSMtah {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.TSMtah h6 {
+    margin-bottom: 0;
+    margin-top: 0.1rem;
+}
+
+#TSMactTag.reactive {
+    margin: 0 6px 0 6px !important;
+    border-width: 1px;
+    border-radius: var(--bs-border-radius);
+}
+
+#TSMactTag.reactive>button {
+    padding-block: 0;
+    padding-inline: 0;
+    text-align: left;
+    border: none;
+}
+#TSMactTag.reactive:hover {
+    /*       top right bottom left      */
+    margin: 0;
+    box-shadow: 10px 1px 5px var(--bs-teal);
+    background: var(--bs-btn-hover-bg) !important;
+    /* color: white; */
+    cursor: pointer;
+}
+#TSMactTag.reactive p {
+    padding: 0 0 0 6px;
+}
+
+.TSMfloat {
+    position: fixed;
+    width: 32%;
+    min-width: 570px;
+    height: auto;
+    padding: 2em 2em 1em 2em;
+    top: 360px;
+    left: 80%;
+    background-color: rgb(240, 240, 240);
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 8px 12px 1px rgba(0,0,0, 0.5);
+    border-radius: 5px 5px;
+    text-align: left;
+    z-index: 9;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+    .TSMfhead {
+        margin-bottom: 2px;
+    }
+    .TSMfloat_h4 {
+        padding: 3px 3px 0 3px !important;
+        display: block;
+        width: max-content;
+        overflow-x: visible;
+        text-align: left;
+        height: 2em;
+        font-size: 1.1rem !important;
+    }
+    .TSMfloat_h4:hover {
+    /*       top right bottom left      */
+        padding: 3px 3px 0 3px;
+        text-align: center;
+        border-style: outset;
+        background: var(--bs-btn-bg);
+        box-shadow: 10px 1px 5px var(--bs-teal);
+        color: white;
+        cursor: pointer;
+    }
+
+#TSMfbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.TSMfbox1 {
+    width: 45%;
+    > table > tbody > tr > td > div{
+        min-height: 36px;
+    }
+}
+    .TSMfbox1>.tsm-thead {
+        display: flex;
+        flex-direction: row;
+    }
+    .TSMfbox1 .tsm-td1 {
+        display: flex;
+        flex-direction: row;
+    }
+
+.TSMfbox2 {
+    width: 55%;
+}
+
+.TSMfbox.TSMfbox2 {
+    overflow: auto;
+    max-height: 322px;
+}
+
+.TSMfloat > .TSMfhead > .TSMtah > #TSMfloat_drag {
+    cursor: move;
+    z-index: 10;
+    background-color: #a8c2f5;
+}
+    .TSMfloat > .TSMfhead > .TSMtah > #TSMfloat_drag:hover {
+        border-style: double;
+        border-color: white;
+    }
+
+#TSMtaBody & tbody {
+    display: block;
+    width: 125%;
+}
+    tbody#TSMtaBody > tr > td {
+        max-height: 25px;
+    }
+
+.scrollBody {
+    max-height: 60px;
+    overflow-y: scroll;
+}
+
+.TSMwidth20 {
+    width: 19.5%;
+}
+.TSMheight1x {
+    height: 1.1em !important;
+}
+
+#TSMfloat_drag {
+    min-width: 15%;
+    border-radius: 10px;
+}
+
+#TSMfloat_drag.drag {
+    border-color: white;
+    box-shadow: 3px 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+#TAselect {
+    overflow-y: auto;
+}
+
+.TAsel_act {
+    background: #dfdbef;
+}
+    .TSMfloat p {
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+
+    .TSMfloat button:hover {
+        background: #1341d7;
+        color: white;
+    }
+
+    .TSMfloat ul {
+        display: flex;
+        align-content: space-between;
+        flex-direction: column;
+    }
+        .TSMfloat ul li {
+            border-bottom: 2px solid #5d5d5d;
+        }
+        .TSMfloat ul li:last-child {
+            border-bottom: none;
+        }
+
+    .TSMfloat ol {
+        display: flex;
+        align-content: space-between;
+        flex-direction: column;
+        min-width: 400px;
+    }
+        .TSMfloat ol li {
+            margin-left: 2rem;
+            min-width: 360px;
+            border-bottom: none;
+        }
+        .TSMfloat ol li p:hover {
+            background: #13d7ae;
+            color: white;
+
+            transition-property: all;
+            transition-duration: 150ms;
+            transition-timing-function: ease-in-out;
+            transition-delay: 0s;
+        }
+
+.TSMfloat-nl {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    z-index: 90;
+}
+.TSMfloat-nlc {
+    margin: 10px auto;
+    border: 1px solid #999;
+    width: 30%;
+    background-color: #eee;
+}
+
+body.waiting * {
+    cursor: wait;
+}

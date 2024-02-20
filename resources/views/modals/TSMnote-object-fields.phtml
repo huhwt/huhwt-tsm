@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\I18N;
+
+/**
+ * @var string  $activeTag
+ */
+
+?>
+
+<div class="mb-3">
+    <label class="col-form-label" for="note">
+        <?= I18N::translate('Tag') . ' - ' . I18N::translate('Has to begin with %s ...', $activeTag) ?>
+    </label>
+    <textarea class="form-control" id="note" name="note" required="required" rows="5" dir="auto" maxlength="36"><?= $activeTag . ' '?></textarea>
+</div>
+
+<?= view('modals/restriction-fields') ?>

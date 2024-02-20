@@ -1,0 +1,140 @@
+<?php
+
+use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\View;
+use Fisharebest\Webtrees\Tree;
+
+use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMCreateNoteModal;
+
+/**
+ * @var string              $module
+ * @var string              $activeTag
+ * @var array<>             $TAGoptions
+ * @var array<>             $tagsLabels
+ * @var array<>             $tagsValues
+ * @var string              $routeSDbAjax
+ * @var string              $routeATcAjax
+ * @var string              $routeWReAjax
+ * @var string              $header_acts
+ * @var Tree                $tree
+ */
+
+    $Htitle = I18N::translate('Click here to undock/dock list of performed actions');
+
+    $Dtitle = I18N::translate('Click and drag here to move the list of performed actions');
+
+    $Stitle = I18N::translate('Select active TagsAction');
+
+    $Ttitle = I18N::translate('Click here to toggle highlighting of relevant records on or off');
+
+    $html_actTags = view($module . '::' . 'showTags/showTags-ActiveTags', [
+        'module'        => $module,
+        'activeTag'     => $activeTag,
+        'TAGoptions'    => $TAGoptions,
+        'routeSDbAjax'  => $routeSDbAjax,
+        'routeATcAjax'  => $routeATcAjax,
+        'routeWReAjax'  => $routeWReAjax,
+        'dtitle'        => $Dtitle,
+        'stitle'        => $Stitle,
+        'tree'          => $tree
+    ]);
+
+    $_activeTag     = $activeTag . ':';
+
+    $header_actTaction  = I18N::translate('Active TagsAction');
+
+    asort($tagsLabels);
+?>
+
+<?php if ($tagsLabels === []) : ?>
+    <h4><?= $header_acts ?></h4>
+    <p><?= I18N::translate('No actions executed.'); ?></p>
+<?php else : ?>
+    <?php $count = count($tagsLabels) - 1; ?>
+    <?php $Theader = 'TSM-TagsActions'; ?>
+    <!-- optionally floating -->
+    <div id="TSMfloat" class="">
+        <div class="TSMfhead">
+            <h4><div title="<?= $Htitle ?>" class="TSMfloat_h4 btn btn-secondary"><?= $header_acts ?></div></h4>
+            <?php echo $html_actTags ?>
+        </div>
+        <div id="TSMfbox">
+            <div class="TSMfbox TSMfbox1" >
+                <table class="table wt-facts-table">
+                    <colgroup>
+                        <col span="1" style="width: 100%;">
+                    </colgroup>
+                    <div class="tsm-thead TSM_Theader">
+                        <div class="tsm-td1">
+                            <div class="tsm-th tsm-td tsm-tc1" ><?= $header_actTaction ?></div>
+                            <div class="tsm-th tsm-td tsm-tc2" id="TSMshowXXX" actSB="" actTAshow="" actTAhide="">
+                                <div>
+                                    <button type="button" id="TSMshowAll" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Reset Filter - show all record in overview') ?>" disabled>
+                                        <?= view('icons/note'); ?>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="button" id="TSMshowActive" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: select records for Active Tag in overview') ?>"  disabled>
+                                        <?= view('icons/eye'); ?>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="button" id="TSMhideActive" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: hide records for Active Tag in overview') ?>"  disabled>
+                                        <?= view('icons/eye-slash'); ?>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <tbody id="tagsAction" stitle="<?= $Stitle ?>" activetag="">
+                        <tr><td>...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="TSMfbox TSMfbox2">
+                <div class="tsm-table wt-facts-table scroll">
+                    <div class="tsm-thead TSM_Theader">
+                        <div class="tsm-tr">
+                            <div class="tsm-th tsm-td tsm-tc1" name="<?= $Theader ?>" class="TSM_TheaderX" ><?= I18N::translate('Records') . ' - ' . I18N::translate($Theader) . '<span name="TSMfloatHidden"> (' . view('components/badge', ['count' => $count]) . ')</span>'; ?></div>
+                            <div class="tsm-th tsm-td tsm-tc2" name="TSMfloatHidden" class="TSM_TheaderX"><?= I18N::translate('Action'); ?></div>
+                        </div>
+                    </div>
+                    <div class="tsm-tbody" id="TSMtaBody" name="<?= $Theader ?>" colorsOn="" colorsOff="_;color1;color2;color3;color4;color5;color6">
+                        <?php foreach ($tagsLabels as $tagLabel) :
+                            $nref = isset($tagsValues[$tagLabel]) ? 'xref="'.$tagsValues[$tagLabel].'"' : ""; ?>
+                            <div class="tsm-tr" color="">
+                                <div class="tsm-td tsm-tc1">
+                                    <span class="wt-icon-tag"><i class="fas fa-tags fa-fw" aria-hidden="true"></i></span>
+                                    <span title="<?= $Ttitle ?>"><?= $tagLabel ?></span>
+                                </div>
+                                <div class="tsm-td tsm-tc2" name="TSMfloatHidden">
+                                    <a href="#" rel="nofollow" data-url="<?= $routeSDbAjax ?>" action="TagsActRemove" tree="<?= $tree->name() ?>", tagsact="<?= $tagLabel ?>" <?= $nref ?>>
+                                        <button type="submit" class="btn btn-link" title="<?= I18N::translate('Delete tag from overview and database'); ?>">
+                                            <?= view('icons/delete'); ?>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="tsm-tfoot">
+                        <div class="tsm-tr" name="TSMfloatHidden">
+                            <div class="tsm-td tsm-tc1">
+                                <div class="input-group">
+                                    <?php $id = Registry::idFactory()->id(); ?>
+                                    <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(TSMCreateNoteModal::class, ['tree' => $tree->name(), 'activeTag' => $_activeTag])) ?>" data-wt-select-id="<?= $id ?>" title="<?= I18N::translate('Create a new tag') ?>">
+                                        <?= view('icons/add') ?>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="tsm-td tsm-tc2">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?= view('modals/ajax') ?>
+<?php endif; ?>

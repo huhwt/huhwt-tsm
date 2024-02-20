@@ -1,0 +1,75 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\Http\RequestHandlers\ModulesAllPage;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Tree;
+use Illuminate\Support\Collection;
+
+/**
+ * @var array<int,string>    $TAG_options
+ * @var int                  $TAGoption
+ * @var string               $title
+ * @var string               $TAG_options_stock
+ */
+
+?>
+
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), route(ModulesAllPage::class) => I18N::translate('Modules'), $title]]) ?>
+
+<h1><?= $title ?></h1>
+<p>
+    <?= I18N::translate('Define the preferred tagging-clause') ?>
+</p>
+
+<form method="post">
+    <div class="row mb-3">
+        <legend class="col-sm-3 col-form-label">
+            <?= /* I18N: Configuration option */
+            I18N::translate("TAG Actions - tags in stock") ?>
+        </legend>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" dir="ltr" id="TAG_options_stock" name="TAG_options_stock" value="<?= e($TAG_options_stock) ?>" maxlength="255" placeholder="TAG" required="required">
+        </div>
+        <legend class="col-sm-3 col-form-label">
+            &nbsp;
+        </legend>
+        <div class="col-sm-9">
+            <br>
+            <div class="small text-muted">
+                <?= I18N::translate("You may define a ',' separated list of your preferred prefices"); ?>
+            </div>
+            <div class="small text-muted">
+                <?= I18N::translate("'TAG' is recommended (and the default, if you omit this option), but it's more like a proposal"); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <legend class="col-sm-3 col-form-label">
+            <?= /* I18N: Configuration option */
+            I18N::translate("TAG Definition - Choose a prefix") ?>
+        </legend>
+        <div class="col-sm-9">
+            <?= view('components/radios-inline', ['name' => 'TAGoption', 'selected' => $TAGoption, 'options' => $TAG_options]) ?>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-9">
+            <button type="submit" class="btn btn-primary">
+                <?= view('icons/save') ?>
+                <?= I18N::translate('save') ?>
+            </button>
+
+            <a href="<?= e(route(ControlPanel::class)) ?>" class="btn btn-secondary">
+                <?= view('icons/cancel') ?>
+                <?= I18N::translate('back') ?>
+            </a>
+        </div>
+    </div>
+
+    <?= csrf_field() ?>
+</form>

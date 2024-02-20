@@ -1,0 +1,96 @@
+<?php
+
+use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var string              $module
+ * @var array<GedcomRecord> $types
+ * @var array<>             $recordTypes
+ * @var string              $title
+ * @var string              $header_recs
+ * @var string              $header_acts
+ * @var string              $activeTag
+ * @var array<>             $TAGoptions
+ * @var array<>             $tagsLabels
+ * @var array<>             $tagsValues
+ * @var string              $routeSDbAjax
+ * @var string              $routeATcAjax
+ * @var string              $routeWReAjax
+ * @var array<>             $tagsXREFs
+ * @var Tree                $tree
+ */
+
+?>
+
+<h2 class="wt-page-title"><?= $title ?></h2>
+
+<?php
+    $html_actions = view($module . '::' . 'showTags/showTags-Actions', [
+        'module'        => $module,
+        'header_acts'   => $header_acts,
+        'tagsLabels'    => $tagsLabels,
+        'tagsValues'    => $tagsValues,
+        'activeTag'     => $activeTag,
+        'TAGoptions'    => $TAGoptions,
+        'routeSDbAjax'  => $routeSDbAjax,
+        'routeATcAjax'  => $routeATcAjax,
+        'routeWReAjax'  => $routeWReAjax,
+        'tree'          => $tree
+    ]);
+    $html_actinfo = view($module . '::' . 'showTags/showTags-ActionInfo', [
+        'module'        => $module,
+        'header_acts'   => $header_acts,
+        'tagsLabels'    => $tagsLabels,
+        'routeSDbAjax'  => $routeSDbAjax,
+        'tree'          => $tree
+    ]);
+    $html_table = view($module . '::' . 'showTags/showTags-Types', [
+        'module'        => $module,
+        'types'         => $types,
+        'recordTypes'   => $recordTypes,
+        'title'         => I18N::translate('Family tree tags view'),
+        'header_recs'   => $header_recs,
+        'header_acts'   => $header_acts,
+        'tagsLabels'    => $tagsLabels,
+        'routeSDbAjax'  => $routeSDbAjax,
+        'tagsXREFs'     => $tagsXREFs,
+        'tree'          => $tree,
+    ]); 
+
+    $alert_nca = I18N::translate('No colors available');
+    $alert_ncd = I18N::translate('No colors defined');
+?>
+
+<?php if ($recordTypes === []) : ?>
+    <?php echo $html_actinfo ?>
+    <br>
+    <h4><?= $header_recs ?></h4>
+    <p><?= I18N::translate('Tags view is empty.'); ?></p>
+<?php else :
+    ?>
+    <?php echo $html_actions ?>
+    <br>
+    <p id="prepInfo"><?= I18N::translate("Just a moment") . " ..." ?></p>
+    <h4><?= $header_recs ?></h4>
+    <?php echo $html_table; ?>
+<?php endif; ?>
+
+<?php View::push('styles') ?>
+<link rel="stylesheet" href="<?= e($stylesheet) ?>">
+<?php View::endpush(); ?>
+
+<?php View::push('javascript'); ?>
+<script src="<?= e($javascript); ?>"></script>
+<?php View::endpush(); ?>
+
+<?= View::push('javascript'); ?>
+<script>
+  var TSMalert_nca = "<?= $alert_nca ?>";
+  var TSMalert_ncd = "<?= $alert_ncd ?>";
+  TSM_prepPevents();
+  TSM_showTables();
+</script>
+<?= View::endpush(); ?>

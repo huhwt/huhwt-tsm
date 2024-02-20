@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+namespace HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers;
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Tree;
+
+/**
+ * @var Tree    $tree
+ * @var string  $activeTag
+ */
+
+?>
+
+<form method="post" action="<?= e(route(TSMCreateNoteAction::class, ['tree' => $tree->name()])) ?>" id="wt-modal-form">
+    <?= view('modals/header', ['title' => I18N::translate('Create a new tag')]) ?>
+
+    <div class="modal-body">
+        <?= view('modals/note-object-fieldsTSM',
+            [ 'activeTag' => $activeTag ]) ?>
+    </div>
+
+    <?= view('modals/footer-save-cancel') ?>
+
+    <?= csrf_field() ?>
+</form>
+
+<script>
+  document.getElementById('wt-modal-form').addEventListener('submit', webtrees.createRecordModalSubmit);
+</script>

@@ -1,0 +1,226 @@
+# webtrees tagging service manager
+#
+msgid ""
+msgstr ""
+
+msgid "Tagging service manager"
+msgstr "Tagging-Dienst Verwaltung"
+
+msgid "Records in tags view"
+msgstr "Datensätze in Markierungs-Übersicht"
+
+msgid "Tags view is empty."
+msgstr "Markierungs-Übersicht enthält keine Daten."
+
+msgid "Records in %s "
+msgstr "Datensätze im %s "
+
+msgid "Add this record to the tags view"
+msgstr "Zur Markierungs-Übersicht hinzufügen"
+
+msgid "Delete records in the tags view entirely"
+msgstr "Datensätze in Markierungs-Übersicht in Gänze löschen"
+
+msgid "Delete records in the tags view with selection option"
+msgstr "Datensätze in Markierungs-Übersicht mit Auswahloption löschen"
+
+msgid "TSM-Individual"
+msgstr "Personen"
+
+msgid "TSM-Family"
+msgstr "Familien"
+
+msgid "TSM-Media"
+msgstr "Medien-Dateien"
+
+msgid "TSM-Location"
+msgstr "Ortsangaben"
+
+msgid "TSM-Note"
+msgstr "Notizen"
+
+msgid "TSM-Repository"
+msgstr "Datenspeicher"
+
+msgid "TSM-Source"
+msgstr "Quellen-Verzeichnis"
+
+msgid "TSM-Submitter"
+msgstr "Einsender"
+
+msgid "Delete all records, a set of records of the same type, or selected records"
+msgstr "Löschen aller Datensätze insgesamt, oder aller eines Typs, oder nach Auswahl"
+
+msgid "all records"
+msgstr "Alle Datensätze:"
+
+msgid "set of records by type"
+msgstr "Datensätze eines Typs"
+
+msgid "select records to be deleted"
+msgstr "Datensätze zum Löschen auswählen:"
+
+msgid "records created by action"
+msgstr "Datensätze verursacht durch Aktion:"
+
+msgid "You have tried '%s' - it is not implemented yet."
+msgstr "Aktion '%s' geht nicht - ist noch nicht eingebaut"
+
+msgid "Execute an action on records in the tags view"
+msgstr "Weiterführende Aktionen mit den Datensätzen in der Markierungs-Übersicht"
+
+msgid "Visualize records in a diagram ..."
+msgstr "Datensätze graphisch auswerten in einem Diagramm ..."
+
+msgid "... using TAM"
+msgstr "... mittels TAM"
+
+msgid "... using Lineage"
+msgstr "... mittels Lineage"
+
+msgid "Privatize options"
+msgstr "Privatisierungs-Optionen"
+
+msgid "back to show"
+msgstr "Zurück zur Übersicht"
+
+msgid "back"
+msgstr "Zurück"
+
+msgid "Missing dependency - Install %s!"
+msgstr "Abhängigkeit nicht erfüllt - %s installieren!"
+
+msgid "Records in tags view - Execute an action on them."
+msgstr "Datensätze in Markierungs-Übersicht"
+
+msgid "Performed actions fo fill the tags."
+msgstr "Auflistung Markierungen"
+
+msgid "TSM-TagsActions"
+msgstr "Markierungen"
+
+msgid "TSM-TagsInfo"
+msgstr "Liste der Markierungen"
+
+msgid "No actions executed."
+msgstr "Es wurden keine Aktionen ausgeführt."
+
+msgid "Just a moment"
+msgstr "'nen kleinen Augenblick noch"
+
+msgid "Click here to toggle highlighting of relevant records on or off"
+msgstr "Klicken Sie hier, um die Hervorhebung der entsprechenden Datensätze ein- oder auszuschalten"
+
+msgid "Total number of entries: %s"
+msgstr "Anzahl Einträge gesamt: %s"
+
+msgid "of which new entries: %s"
+msgstr "davon Einträge neu: %s"
+
+msgid "all persons to whom '%s' is linked"
+msgstr "Alle Personen welchen '%s' zugeordnet ist"
+
+msgid "all families to whom '%s' is linked"
+msgstr "Alle Familien welchen '%s' zugeordnet ist"
+
+msgid "Add '%s' to the tags view"
+msgstr "'%s' zum Übersicht hinzufügen"
+
+msgid "Active Tag"
+msgstr "Aktive Kennung"
+
+msgid "Click here to choose the 'Active Tag'"
+msgstr "Hier Klicken um die 'Aktive Kennung' zu ändern"
+
+msgid "Choose an other 'Active Tag'"
+msgstr "Eine andere 'Aktive Kennung' auswählen"
+
+msgid "Choose a tag"
+msgstr "Auswahl Markierung"
+
+msgid "'Active Tag' is changed"
+msgstr "'Aktive Markierung' neu gesetzt"
+
+msgid "Redo"
+msgstr "Neu laden"
+
+msgid "(none)"
+msgstr "(ohne)"
+
+msgid "No colors available"
+msgstr "Alle Farben vergeben"
+
+msgid "No colors defined"
+msgstr "Keine Farbe gesetzt"
+
+msgid "Create a new tag"
+msgstr "Eine neue Markierung erstellen"
+
+msgid "Tag"
+msgstr "Markierung"
+
+msgid "Define the preferred tagging-clause"
+msgstr "Bevorzugte Markierung(en) erstellen"
+
+msgid "TAG Actions - tags in stock"
+msgstr "Markierungen - Vorgaben definieren"
+
+msgid "TAG Definition - Choose a prefix"
+msgstr "Markierung auswählen - wird 'Aktive Markierung'"
+
+msgid "You may define a ',' separated list of your preferred prefices"
+msgstr "Man kann eine mit ',' separierte Liste der gewünschten Markierungen erstellen"
+
+msgid "'TAG' is recommended (and the default, if you omit this option), but it's more like a proposal"
+msgstr "'TAG' wird empfohlen (und ist auch der Standard, wenn diese Option nicht genutzt wird), ist aber eher als Vorschlag zu verstehen ..."
+
+msgid "Has to begin with %s ..."
+msgstr "Muss mit %s beginnen ..."
+
+msgid "There is a problem ..."
+msgstr "Es gibt ein Problem ..."
+
+msgid "Only prefix with no content specified"
+msgstr "Nur Präfix ohne Inhalt angegeben"
+
+msgid "The tag must start with %s"
+msgstr "Die Markierung muss mit %s beginnen"
+
+msgid "The tag '%s' is already in use"
+msgstr "Die Markierung '%s' wird bereits benutzt"
+
+msgid "The tag has been created"
+msgstr "Die Markierung wurde neu angelegt"
+
+msgid "Click here to undock/dock list of performed actions"
+msgstr "Hier Klicken zum Freistellen/Einbinden der Markierungen-Liste"
+
+msgid "Click and drag here to move the list of performed actions"
+msgstr "Hier Klicken und Ziehen um die Markierungen-Liste zu verschieben"
+
+msgid "Active TagsAction"
+msgstr "Aktive Markierung"
+
+msgid "Select active TagsAction"
+msgstr "Aktive Markierung auswählen"
+
+msgid "Reset Filter - show all record in overview"
+msgstr "Filter zurücksetzen - Alle Datensätze in Übersicht zeigen"
+
+msgid "Filter: select records for Active Tag in overview"
+msgstr "Filter: Datensätze zur Aktiven Markierung in Übersicht zeigen -Ein/Aus-"
+
+msgid "Filter: hide records for Active Tag in overview"
+msgstr "Filter: Datensätze zur Aktiven Markierung in Übersicht ausblenden -Ein/Aus-"
+
+msgid "Delete tag from overview and database"
+msgstr "Markierung aus Übersicht und Datenbank löschen"
+
+msgid "Remove record from overview"
+msgstr "Eintrag aus Übersicht entfernen"
+
+msgid "Save tagging state to the database"
+msgstr "Tagging-Zustand in der Datenbank speichern"
+
+msgid ""
+msgstr ""

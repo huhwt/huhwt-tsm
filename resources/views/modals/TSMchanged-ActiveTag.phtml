@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @var string $name
+ * @var string $title
+ * @var string $url
+ */
+
+?>
+<?= view('modals/header', ['title' => $title]) ?>
+
+<div class="modal-body">
+    <p><?= $name ?></p>
+</div>
+
+<?= view('modals/footer-checked') ?>

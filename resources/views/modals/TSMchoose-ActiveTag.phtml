@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Tree;
+
+use Huhwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMchooseATagAction;
+
+/**
+ * @var Tree        $tree
+ * @var string      $activeTag
+ * @var array<>     $TagOptions
+ * @var string      $Croute
+ */
+
+$TOsize = count($TagOptions);
+if ($TOsize > 12)
+    $TOsize = 12;
+?>
+
+<form method="post" action="<?= $Croute ?>" id="wt-modal-form">
+    <?= view('modals/header', ['title' => I18N::translate("Choose an other 'Active Tag'")]) ?>
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="col-form-label" for="ChooseTag">
+                <?= I18N::translate("Choose a tag") ?>
+            </label>
+            <select class="form-control" id="ChooseTag" name="ChooseTag" required="required" size="<?= $TOsize ?>" dir="auto"><?= $activeTag . ' '?>
+                <?php foreach ($TagOptions as $key => $value) : ?>
+                    <option value="<?= e((string) $value) ?>"<?= (string) $value === (string) $activeTag ?  ' selected="selected"' : '' ?>>
+                        <?= $value === '' ? '&nbsp;' : e($value) ?>
+                    </option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+
+    <?= view('modals/footer-save-cancel') ?>
+
+    <?= csrf_field() ?>
+</form>
+
+<script>
+    document.getElementById('wt-modal-form').addEventListener('submit', TSM_createATagModalSubmit);
+</script>

@@ -1,0 +1,58 @@
+<?php
+
+use Cissee\WebtreesExt\MoreI18N;
+use Fisharebest\Webtrees\GedcomRecord;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\View;
+use Fisharebest\Webtrees\Tree;
+
+use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMchooseATag;
+
+/**
+ * @var string              $module
+ * @var string              $activeTag
+ * @var array<>             $TAGoptions
+ * @var string              $routeSDbAjax
+ * @var string              $routeATcAjax
+ * @var string              $routeWReAjax
+ * @var string              $dtitle
+ * @var string              $stitle
+ * @var Tree                $tree
+ */
+
+    $header_activeTag   = I18N::translate('Active Tag');
+
+    $Ttitle = I18N::translate("Click here to choose the 'Active Tag'");
+
+    $wt_s_id = Registry::idFactory()->id();
+
+?>
+
+<div class="TSMtah">
+    <div name="TSMfloatHidden">
+        <a href="#" rel="nofollow" data-url="<?= $routeSDbAjax ?>" action="TagsSave" tree="<?= $tree->name() ?>">
+            <button id="TSMbtnSave" class="btn btn-secondary tsm-btn" title="<?= I18N::translate('Save tagging state to the database'); ?>" disabled>
+                <?= view('icons/database'); ?><span><?= I18N::translate('save'); ?></span>
+            </button>
+        </a>
+    </div>
+    <div name="TSMfloatHidden">
+        <a href="#" rel="nofollow" data-url="<?= $routeWReAjax ?>" >
+            <button id="TSMbtnRedo" class="btn btn-secondary tsm-btn tsm-btn-sm" title="<?= I18N::translate('Redo'); ?>" >
+                <?= view('icons/redo'); ?><span><?= I18N::translate('Redo'); ?></span>
+            </button>
+        </a>
+    </div>
+    <div id="TSMfloat_drag" dtitle="<?= $dtitle ?>" class="hiddenLine">
+        <p>&nbsp;</p>
+    </div>
+    <div id="TSMactTag" class="reactive">
+        <button type="submit" id="TSMbtnATag" class="btn btn-secondary tsm-btn-txt" title="<?= $Ttitle ?>" 
+            data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= $routeATcAjax ?>" data-wt-select-id="<?= $wt_s_id ?>" >
+            <span><?= $header_activeTag ?></span>
+        </button>
+        <h6 class="hiddenLine" title="<?= $Ttitle ?>"><?= $header_activeTag ?></h6>
+        <p><?= $activeTag ?></p>
+    </div>
+</div>
