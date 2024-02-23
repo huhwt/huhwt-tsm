@@ -1,0 +1,233 @@
+# webtrees tagging service manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: TheDutchJewel <thedutchjewel@gmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgid "Tagging service manager"
+msgstr "Markeringservicebeheer"
+
+msgid "Records in tags view"
+msgstr "Records in markeringsoverzicht"
+
+msgid "Tags view is empty."
+msgstr "Markeringsoverzicht is leeg."
+
+msgid "Records in %s "
+msgstr "Records in %s "
+
+msgid "Add this record to the tags view"
+msgstr "Dit record toevoegen aan het markeringsoverzicht"
+
+msgid "Delete records in the tags view entirely"
+msgstr "Records in het markeringsoverzicht volledig verwijderen"
+
+msgid "Delete records in the tags view with selection option"
+msgstr "Records verwijderen in markeringsoverzicht met selectieoptie"
+
+msgid "TSM-Individual"
+msgstr "Personen"
+
+msgid "TSM-Family"
+msgstr "Gezinnen"
+
+msgid "TSM-Media"
+msgstr "Mediabestanden"
+
+msgid "TSM-Location"
+msgstr "Locaties"
+
+msgid "TSM-Note"
+msgstr "Notities"
+
+msgid "TSM-Repository"
+msgstr "Opslagplaatsen"
+
+msgid "TSM-Source"
+msgstr "Bronnen"
+
+msgid "TSM-Submitter"
+msgstr "Indiener"
+
+msgid "Delete all records, a set of records of the same type, or selected records"
+msgstr "Alle records, een set records van hetzelfde type of geselecteerde records verwijderen"
+
+msgid "all records"
+msgstr "alle records"
+
+msgid "set of records by type"
+msgstr "set records per type"
+
+msgid "select records to be deleted"
+msgstr "te verwijderen records selecteren"
+
+msgid "records created by action"
+msgstr "records aangemaakt door actie"
+
+msgid "You have tried '%s' - it is not implemented yet."
+msgstr "Actie '%s' werkt niet - is nog niet geïmplementeerd."
+
+msgid "Execute an action on records in the tags view"
+msgstr "Een actie uitvoeren op records in het markeringsoverzicht"
+
+msgid "Visualize records in a diagram ..."
+msgstr "Records visualiseren in een diagram ..."
+
+msgid "... using TAM"
+msgstr "... met behulp van TAM"
+
+msgid "... using Lineage"
+msgstr "... met behulp van Lineage"
+
+msgid "Privatize options"
+msgstr "Privacyopties"
+
+msgid "back to show"
+msgstr "terug naar overzicht"
+
+msgid "back"
+msgstr "terug"
+
+msgid "Missing dependency - Install %s!"
+msgstr "Afhankelijkheid ontbreekt - Installeer %s!"
+
+msgid "Records in tags view - Execute an action on them."
+msgstr "Records in markeringsoverzicht - Voer er een actie op uit."
+
+msgid "Performed actions fo fill the tags."
+msgstr "Uitgevoerde acties om de markeringen te vullen."
+
+msgid "TSM-TagsActions"
+msgstr "Markeringen"
+
+msgid "TSM-TagsInfo"
+msgstr "Markeringsoverzicht"
+
+msgid "No actions executed."
+msgstr "Geen acties uitgevoerd."
+
+msgid "Just a moment"
+msgstr "Een ogenblikje"
+
+msgid "Click here to toggle highlighting of relevant records on or off"
+msgstr "Klik hier om het markeren van relevante records aan of uit te zetten"
+
+msgid "Total number of entries: %s"
+msgstr "Totaal aantal vermeldingen: %s"
+
+msgid "of which new entries: %s"
+msgstr "waarvan nieuwe vermeldingen: %s"
+
+msgid "all persons to whom '%s' is linked"
+msgstr "alle personen aan wie '%s' is gekoppeld"
+
+msgid "all families to whom '%s' is linked"
+msgstr "alle gezinnen waaraan '%s' is gekoppeld"
+
+msgid "Add '%s' to the tags view"
+msgstr "Voeg '%s' toe aan het markeringsoverzicht"
+
+msgid "Active Tag"
+msgstr "Actieve Markering"
+
+msgid "Click here to choose the 'Active Tag'"
+msgstr "Klik hier om de 'Actieve Markering' te kiezen"
+
+msgid "Choose an other 'Active Tag'"
+msgstr "Kies een andere 'Actieve Markering'"
+
+msgid "Choose a tag"
+msgstr "Kies een markering"
+
+msgid "'Active Tag' is changed"
+msgstr "'Actieve Markering' is gewijzigd"
+
+msgid "Redo"
+msgstr "Opnieuw"
+
+msgid "(none)"
+msgstr "(geen)"
+
+msgid "No colors available"
+msgstr "Geen kleuren beschikbaar"
+
+msgid "No colors defined"
+msgstr "Geen kleuren gedefinieerd"
+
+msgid "Create a new tag"
+msgstr "Een nieuwe markering maken"
+
+msgid "Tag"
+msgstr "Markering"
+
+msgid "Define the preferred tagging-clause"
+msgstr "Voorkeursmarkering(en) bepalen"
+
+msgid "TAG Actions - tags in stock"
+msgstr "Markeringsacties - markeringen op voorraad"
+
+msgid "TAG Definition - Choose a prefix"
+msgstr "Markeringsdefinitie - Kies een voorvoegsel"
+
+msgid "You may define a ',' separated list of your preferred prefices"
+msgstr "U kunt een kommagescheiden lijst van uw voorkeursvoorvoegsels definiëren"
+
+msgid "'TAG' is recommended (and the default, if you omit this option), but it's more like a proposal"
+msgstr "TAG' wordt aanbevolen (en is de standaard als je deze optie weglaat), maar het is meer een voorstel"
+
+msgid "Has to begin with %s ..."
+msgstr "Moet beginnen met %s ..."
+
+msgid "There is a problem ..."
+msgstr "Er is een probleem ..."
+
+msgid "Only prefix with no content specified"
+msgstr "Alleen voorvoegsel zonder gespecificeerde inhoud"
+
+msgid "The tag must start with %s"
+msgstr "De markering moet beginnen met %s"
+
+msgid "The tag '%s' is already in use"
+msgstr "De markering '%s' is al in gebruik"
+
+msgid "The tag has been created"
+msgstr "De markering is aangemaakt"
+
+msgid "Click here to undock/dock list of performed actions"
+msgstr "Klik hier om de lijst met uitgevoerde acties te ontkoppelen/ontkoppelen"
+
+msgid "Click and drag here to move the list of performed actions"
+msgstr "Klik en versleep hier om de lijst met uitgevoerde acties te verplaatsen"
+
+msgid "Active TagsAction"
+msgstr "Actieve MarkeringsActie"
+
+msgid "Select active TagsAction"
+msgstr "Selecteer een actieve MarkeringsActie"
+
+msgid "Reset Filter - show all record in overview"
+msgstr "Filter opnieuw instellen - toon alle records in het overzicht"
+
+msgid "Filter: select records for Active Tag in overview"
+msgstr "Filter: selecteer records voor Actieve Markering in overzicht"
+
+msgid "Filter: hide records for Active Tag in overview"
+msgstr "Filter: verberg records voor Actieve Markering in overzicht"
+
+msgid "Delete tag from overview and database"
+msgstr "Markering verwijderen uit overzicht en database"
+
+msgid "Remove record from overview"
+msgstr "Record verwijderen uit overzicht"
+
+msgid "Save tagging state to the database"
+msgstr "Markeringsstatus opslaan in de database"
