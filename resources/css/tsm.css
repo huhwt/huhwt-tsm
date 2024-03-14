@@ -183,11 +183,15 @@ thead > tr > th {
 }
 
 .tsm-tbody#TSMtaBody { 
-    background-color: white;
+    background-color: lightyellow;
+    border-color: var(--bs-form-valid-border-color);
+    border-width: medium;
 }
 .tsm-tfoot {
-    background-color: white;
+    background-color: lightyellow;
     height: 50px;
+    border-color: var(--bs-form-valid-border-color);
+    border-width: medium;
 }
 
 .TSM_Theader {
@@ -202,6 +206,11 @@ thead > tr > th {
 }
 .hiddenLine {
     display: none;
+}
+.offLimits {
+    position: relative;
+    left: -9999px;
+    opacity: 0;
 }
 
 .lineHalfHeight {
@@ -515,4 +524,27 @@ button.tsm-btn-sm-2 {
 
 body.waiting * {
     cursor: wait;
+}
+
+dialog {
+    border-width: 1px;
+    border-style: none;
+    border-color: white;
+}
+
+.tsm-form-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.tsm-form-content {
+    /*       top right bottom left      */
+    padding: 3px 3px 10px 3px;
+    min-width: 650px;
+}
+
+.tsm-form-btn {
+    width: 40% !important;
+    height: 100% !important;
 }

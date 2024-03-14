@@ -18,6 +18,7 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMCreateNoteM
  * @var string              $routeATcAjax
  * @var string              $routeWReAjax
  * @var string              $header_acts
+ * @var string              $html_dTTS
  * @var Tree                $tree
  */
 
@@ -60,6 +61,7 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMCreateNoteM
             <h4><div title="<?= $Htitle ?>" class="TSMfloat_h4 btn btn-secondary"><?= $header_acts ?></div></h4>
             <?php echo $html_actTags ?>
         </div>
+        <?php echo $html_dTTS ?>
         <div id="TSMfbox">
             <div class="TSMfbox TSMfbox1" >
                 <table class="table wt-facts-table">
@@ -123,10 +125,15 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMCreateNoteM
                         <div class="tsm-tr" name="TSMfloatHidden">
                             <div class="tsm-td tsm-tc1">
                                 <div class="input-group">
-                                    <?php $id = Registry::idFactory()->id(); ?>
-                                    <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(TSMCreateNoteModal::class, ['tree' => $tree->name(), 'activeTag' => $_activeTag])) ?>" data-wt-select-id="<?= $id ?>" title="<?= I18N::translate('Create a new tag') ?>">
+                                    <button id="btnAddNote" class="btn btn-secondary" type="button" title="<?= I18N::translate('Create a new tag') ?>" >
                                         <?= view('icons/add') ?>
                                     </button>
+                                    <div class="offLimits">
+                                        <?php $id = Registry::idFactory()->id(); ?>
+                                        <button id="btnAddNote_DO" class="btn btn-secondary" type="submit" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-select-id="<?= $id ?>"
+                                            data-wt-href="<?= e(route(TSMCreateNoteModal::class, ['tree' => $tree->name(), 'activeTag' => $_activeTag])) ?>" >
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tsm-td tsm-tc2">&nbsp;</div>

@@ -18,11 +18,16 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 
+use HuHwt\WebtreesMods\TaggingServiceManager\Traits\TSMdatabaseActions;
+
 /**
  * Trait TSMtagsActions - bundling all actions regarding Session::tags
  */
 trait TSMtagsActions
 {
+    /** All constants and functions related to handling the database  */
+    use TSMdatabaseActions;
+
     /**
      * the Active Tag descriptor
      * @var string $tagsAction
@@ -234,4 +239,35 @@ trait TSMtagsActions
         $xrefsCjson = json_encode($xrefsC);
         return $xrefsCjson;
     }
+
+    /**
+     * Load all notes prefixed by all TAGs
+     * 
+     * @param Tree              $tree
+     */
+    private function getTagNotes_All(Tree $tree): array
+    {
+        $xrefsN_ar          = [];
+        $tagTxt_ar          = [];
+
+        $notes              = $this->get_AllNotes($tree)->toArray();        // get all notes
+
+        $TAGoptions         = $this->TAGconfigOptions();
+
+        foreach( $TAGoptions as $ito => $_activeTAG) {
+            foreach ($notes as $idx => $note) {                                 // store crossreferences for notes and texts
+                $_xref      = $note->xref();
+                $_tagTxt    = $note->getNote();
+                if (str_starts_with($_tagTxt, $_activeTAG)) {
+                    $xrefsN_ar[$_xref]      = $_tagTxt;
+                    $tagTxt_ar[$_tagTxt]    = $_xref;
+                }
+            }
+        }
+
+        return [ $xrefsN_ar, $tagTxt_ar];
+
+    }
+
+
 }

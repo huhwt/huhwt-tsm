@@ -28,6 +28,7 @@ use Fisharebest\Webtrees\Tree;
 <h2 class="wt-page-title"><?= $title ?></h2>
 
 <?php
+    $html_dTTS = view($module . '::' . 'showTags/showTags-TagsToSave', []);
     $html_actions = view($module . '::' . 'showTags/showTags-Actions', [
         'module'        => $module,
         'header_acts'   => $header_acts,
@@ -38,6 +39,7 @@ use Fisharebest\Webtrees\Tree;
         'routeSDbAjax'  => $routeSDbAjax,
         'routeATcAjax'  => $routeATcAjax,
         'routeWReAjax'  => $routeWReAjax,
+        'html_dTTS'     => $html_dTTS,
         'tree'          => $tree
     ]);
     $html_actinfo = view($module . '::' . 'showTags/showTags-ActionInfo', [

@@ -38,21 +38,29 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMchooseATag;
         </a>
     </div>
     <div name="TSMfloatHidden">
-        <a href="#" rel="nofollow" data-url="<?= $routeWReAjax ?>" >
-            <button id="TSMbtnRedo" class="btn btn-secondary tsm-btn tsm-btn-sm" title="<?= I18N::translate('Redo'); ?>" >
+        <button id="TSMbtnRedo" class="btn btn-secondary tsm-btn tsm-btn-sm" type="button" title="<?= I18N::translate('Redo'); ?>" >
+            <?= view('icons/redo'); ?><span><?= I18N::translate('Redo'); ?></span>
+        </button>
+        <div class="offLimits">
+            <button id="TSMbtnRedo_DO" class="btn btn-secondary tsm-btn tsm-btn-sm" type="button" title="<?= I18N::translate('Redo'); ?>"
+                    data-url="<?= $routeWReAjax ?>">
                 <?= view('icons/redo'); ?><span><?= I18N::translate('Redo'); ?></span>
             </button>
-        </a>
+        </div>
     </div>
     <div id="TSMfloat_drag" dtitle="<?= $dtitle ?>" class="hiddenLine">
         <p>&nbsp;</p>
     </div>
     <div id="TSMactTag" class="reactive">
-        <button type="submit" id="TSMbtnATag" class="btn btn-secondary tsm-btn-txt" title="<?= $Ttitle ?>" 
-            data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= $routeATcAjax ?>" data-wt-select-id="<?= $wt_s_id ?>" >
+        <button id="TSMbtnATag" class="btn btn-secondary tsm-btn-txt" type="button" title="<?= $Ttitle ?>" >
             <span><?= $header_activeTag ?></span>
         </button>
         <h6 class="hiddenLine" title="<?= $Ttitle ?>"><?= $header_activeTag ?></h6>
         <p><?= $activeTag ?></p>
+        <div class="offLimits">
+            <button id="TSMbtnATag_DO" class="btn btn-secondary tsm-btn-txt" type="submit" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal"
+                data-wt-select-id="<?= $wt_s_id ?>" data-wt-href="<?= $routeATcAjax ?>" >
+            </button>
+        </div>
     </div>
 </div>

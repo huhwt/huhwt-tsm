@@ -1,0 +1,20 @@
+<?php
+
+use Fisharebest\Webtrees\I18N;
+
+?>
+
+<dialog id="TSMdialTagSave">
+    <form>
+        <div class="modal modal-content modal-lg tsm-form-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><?= I18N::translate('Tag assignments have been changed') ?></h4>
+                <button type="button" id="TSM-dTTSesc" class="btn-close" value="escape" formmethod="dialog" title="<?= I18N::translate('cancel'); ?>"></button>
+            </div>
+            <div class="tsm-form-body">
+                <button type="button" class="btn btn-secondary tsm-btn tsm-form-btn" id="TSM-dTTSyes" value="yes"><?= I18N::translate('Save and proceed'); ?></button>
+                <button type="button" class="btn btn-secondary tsm-btn tsm-form-btn" id="TSM-dTTSno" value="no"><?= I18N::translate('Proceed without saving'); ?></button>
+            </div>
+        </div>
+    </form>
+</dialog>

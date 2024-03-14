@@ -34,7 +34,7 @@ var TSMcolorOFF         = '';
 var saveEnabled         = false;    // initial state of TSMbtnSave is disabled
 
 var s_wt                = window.webtrees;                              // grep the webtrees js standard object
-var d_wt                = window.dom;
+var b_wt                = window.bootstrap;
 
 /**   AT...               ActiveTag Actions Region                      */
 /**       b                  tbody                                      */
@@ -50,7 +50,7 @@ const ATua_TagMaster    = document.getElementById('TSMactTag');         // Perfo
 const ATua_TagHeader    = ATua_TagMaster.getElementsByTagName('h6')[0]; // Header 'Active tag' -> placeholder
 const ATua_btn_aTag     = document.getElementById('TSMbtnATag');        // input 'Active tag' -> target for click
 const ATua_btn_Save     = document.getElementById('TSMbtnSave');        // Save to database
-const ATua_btn_Redo     = document.getElementById('TSMbtnRedo');        // Redo (reload Window) -> target for click
+const ATua_btn_Redo     = document.getElementById('TSMbtnRedo_DO');     // Redo (reload Window) -> target for click
 
 const ATlbb_tagsAction  = document.getElementById('tagsAction');        // 1. element of tagsActions ...
 const ATlbb_TAtext_empty    = ATlbb_tagsAction.innerHTML;               // ... we need the text as indicator for empty state
@@ -63,9 +63,16 @@ const ATlbh_btn_ShowAll     = document.getElementById(AT_ShowAll_id);   // Contr
 const ATlbh_btn_ShowActive  = document.getElementById(AT_ShowActive_id);// Control - Show only records for active tagsAction
 const ATlbh_btn_HideActive  = document.getElementById(AT_HideActive_id);// Control - Hide the records with active tagsAction
 
+const ATrbb_TSMactTags      = document.getElementById('TSMtaBody');     // For srolling
 
-const ATrbb_TSMactTags     = document.getElementById('TSMtaBody');      // For srolling
-
+const DialogToSave          = document.getElementById('TSMdialTagSave');// For Dialog 'Tags-To-Save'
+var TTSid                   = 0;
+const TTSactions            = [
+    [ 'dummy',      'dummy'         ],
+    [ 'TSMbtnATag', 'TSMbtnATag_DO' ],
+    [ 'btnAddNote', 'btnAddNote_DO' ],
+    [ 'TSMbtnRedo', 'TSMbtnRedo_DO' ],
+]
 
 /**
  * For performance reasons, the table contents are initially hidden when the page is accessed.
@@ -244,35 +251,45 @@ function ATlb_prepEvents() {
  * define the events for the ActiveTags RecordTable (right box)
  */
 function ATrb_prepEvents() {
-    let telems = ATrbb_TSMactTags.getElementsByClassName('wt-icon-tag');          // we collect significant nodes ...
+    ATrbr_prepTAclick();
+    ATrbr_prepTAdeferredAction(1,'TSMbtnATag');
+    ATrbr_prepTAdeferredAction(2,'btnAddNote');
+    ATrbr_prepTAdeferredAction(3,'TSMbtnRedo');
+}
+
+/**
+ * click events for tags
+ */
+function ATrbr_prepTAclick() {
+    let telems = ATrbb_TSMactTags.getElementsByClassName('wt-icon-tag');    // we collect significant nodes ...
     let ceFirst = true;
-    for ( const telem of telems ) {                                     // ... and grep for each:
-        let trElem = telem.parentElement.parentElement;                 // -> the superior table-line
-        let tbElem = trElem.parentElement;                              // -> the superior table-body
-        let celem = telem.nextElementSibling;                           // -> the element to receive the event
-        let celemt = celem.innerText;                                   // we grep the text ...
-        if (ceFirst) {                                                      // the first line holds the I18N::translated text for 
-            TagsAction_none = celemt;                                       // '(none)' - we need it for substitutions
+    for ( const telem of telems ) {                                             // ... and grep for each:
+        let trElem = telem.parentElement.parentElement;                         // -> the superior table-line
+        let tbElem = trElem.parentElement;                                      // -> the superior table-body
+        let celem = telem.nextElementSibling;                                   // -> the element to receive the event
+        let celemt = celem.innerText;                                           // we grep the text ...
+        if (ceFirst) {                                                          // the first line holds the I18N::translated text for 
+            TagsAction_none = celemt;                                               // '(none)' - we need it for substitutions
         }
-        if (celemt.includes('|'))                                    // ... extended text? ...
-            celemt = celemt.substring(0, celemt.indexOf('|'));       // ... cut off extension
-        TagsActions.push(celemt);                                       // ... and this is I18N::translated
+        if (celemt.includes('|'))                                               // ... extended text? ...
+            celemt = celemt.substring(0, celemt.indexOf('|'));                      // ... cut off extension
+        TagsActions.push(celemt);                                               // ... and this is I18N::translated
         if (!ceFirst) {
             // inject HighLighting
             celem.addEventListener( 'click', event => {
                 let elemev = event.target;
                 event.stopPropagation();
-                let elemevt = elemev.innerText;                                 // we grep the text ...
-                if (elemevt.includes('|'))                                      // ... extended text? ...
-                    elemevt = elemevt.substring(0, elemevt.indexOf('|'));       // ... cut off extension
-                ATrbr_clickTAtoggler(tbElem, trElem, elemev, elemevt);          // ... to feed the handler
+                let elemevt = elemev.innerText;                                     // we grep the text ...
+                if (elemevt.includes('|'))                                          // ... extended text? ...
+                    elemevt = elemevt.substring(0, elemevt.indexOf('|'));               // ... cut off extension
+                ATrbr_clickTAtoggler(tbElem, trElem, elemev, elemevt);              // ... to feed the handler
             });
             // inject CleanUpXREFs
             let pelem = telem.parentElement.parentElement;
             const aelem = pelem.lastElementChild;
             let delem = aelem.firstElementChild;
             delem.addEventListener( 'click', event => {
-                ATrbr_clickTAdelete(trElem, celem, celemt, delem);                        // ... to feed the handler
+                ATrbr_clickTAdelete(trElem, celem, celemt, delem);                      // ... to feed the handler
             });
         } else {
             trElem.style.display = 'none';
@@ -473,6 +490,70 @@ function ATrbr_clickTAtoggler(ATtbElem, ATtrElem, ATelemev, ATelemevt) {
         // ATlbb_TAsetBolded_do(ATtbElem, true);
     }
 }
+
+/**
+ * manage click for elements with deferred action because off previously checking if there are any valid updates
+ * 
+ */
+function ATrbr_prepTAdeferredAction(_TTSid, elementId) {
+    let etest = document.getElementById(elementId);
+    etest.addEventListener( 'click', event => {
+        TTSid = _TTSid;
+        DialogToSave_Action(_TTSid);                      // ... to feed the handler
+    });
+}
+
+/**
+ * perform dialog actions
+ * 
+ * there are 3 buttons in the dialog
+ * 'TTSyes'     -> execute Save and then proceed
+ * 'TTSno'      -> don't Save, proceed immediately
+ * 'TTSesc'     -> do nothing
+ */
+function DialogToSave_Action(_TTSid) {
+    TTSid           = _TTSid;
+    let act_to_perform = TTSactions[TTSid];
+    let el_atp      = document.getElementById(act_to_perform[1]);
+    let _ret        = false;
+    if (!saveEnabled) {
+        el_atp.click();
+        return _ret;
+    }
+    let eTTSyes     = document.getElementById('TSM-dTTSyes');
+    let eTTSno      = document.getElementById('TSM-dTTSno');
+    let eTTSesc     = document.getElementById('TSM-dTTSesc');
+    // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+    DialogToSave.addEventListener("close", (e) => {
+        let _action = DialogToSave.returnValue;
+        if ( _action === 'escape') {
+            return null;
+        } else if ( _action === 'yes') {
+            ATua_clickTAsave_do(ATua_btn_Save, false);
+            _ret    = true;
+        }
+        el_atp.click();
+        return _ret;
+    });
+  
+    // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+    eTTSyes.addEventListener("click", (event) => {
+        event.preventDefault();                     // We don't want to submit this fake form
+        DialogToSave.close(eTTSyes.value);          // Have to send the clicked button value here.
+    });
+    eTTSno.addEventListener("click", (event) => {
+        event.preventDefault();                     // We don't want to submit this fake form
+        DialogToSave.close(eTTSno.value);          // Have to send the clicked button value here.
+    });
+    eTTSesc.addEventListener("click", (event) => {
+        event.preventDefault();                     // We don't want to submit this fake form
+        DialogToSave.close(eTTSesc.value);          // Have to send the clicked button value here.
+    });
+
+    DialogToSave.showModal();                      // ... to feed the handler
+
+}
+
 
 /**
  * Transfer the highlighting to the data lines
@@ -1274,14 +1355,55 @@ function AT_drag_stop() {
  * Execute 'Save tags to database'
  */
 function ATua_clickTAsave(event) {
-    let delem   = event.target;
+    let belem   = event.target;
     event.stopImmediatePropagation();
     do {
-        if (delem.classList.contains('btn'))
+        if (belem.classList.contains('btn'))
             break;
-        delem = delem.parentNode;
-    } while (!delem.classList.contains('btn'));
+        belem = belem.parentNode;
+    } while (!belem.classList.contains('btn'));
 
+
+    ATua_clickTAsave_do(belem, true);
+}
+
+function ATua_clickTAsave_do(belem, do_reload) {
+    let helem = belem.parentNode;
+    let XREFs = TSM_XREFcollect();
+
+    let xref = helem.getAttribute('xref');
+    let action = helem.getAttribute('action');
+    let route_ajax = helem.getAttribute('data-url');
+    let _url = decodeURIComponent(route_ajax);
+    if (_url.includes('&amp;')) {
+        _url = _url.replace('&amp;','&');
+    }
+    _url = _url + '&action=' + encodeURIComponent(action);
+    document.body.classList.add('waiting');
+    $.ajax({
+        type: 'POST',
+        url: _url,
+        dataType: 'json',
+        data: { xrefs: JSON.stringify(XREFs) },
+        success: function (ret) {
+            var _ret = ret;
+            document.body.classList.remove('waiting');
+            if (do_reload) { location.reload(); }
+            // __updateCCEcount(_ret);
+            return true;
+        },
+        complete: function () {
+            document.body.classList.remove('waiting');
+//
+        },
+        timeout: function () {
+            document.body.classList.remove('waiting');
+            return false;
+        }
+    });
+}
+
+function TSM_XREFcollect() {
     let XREFs = {};
     let tr_lines = document.querySelectorAll('tr.TSM_Rline');          // ... so we collect the table-lines carrying gedcom-records ...
     for ( const tr_line of tr_lines) {                              // ... and traverse over it ...
@@ -1301,39 +1423,9 @@ function ATua_clickTAsave(event) {
             tags = a_tags.join(';');
         XREFs[a_xref] = tags;
     }
+    return XREFs;
+}
 
-    ATua_clickTAsave_do(delem.parentNode, XREFs);
-}
-function ATua_clickTAsave_do(delem, XREFs) {
-    let xref = delem.getAttribute('xref');
-    let action = delem.getAttribute('action');
-    let route_ajax = delem.getAttribute('data-url');
-    let _url = decodeURIComponent(route_ajax);
-    if (_url.includes('&amp;')) {
-        _url = _url.replace('&amp;','&');
-    }
-    _url = _url + '&action=' + encodeURIComponent(action);
-    document.body.classList.add('waiting');
-    $.ajax({
-        type: 'POST',
-        url: _url,
-        dataType: 'json',
-        data: { xrefs: JSON.stringify(XREFs) },
-        success: function (ret) {
-            var _ret = ret;
-            document.body.classList.remove('waiting');
-            location.reload();
-            // __updateCCEcount(_ret);
-            return true;
-        },
-        complete: function () {
-//
-        },
-        timeout: function () {
-            return false;
-        }
-    });
-}
 function ATua_clickWRedo(event) {
     let delem   = event.target;
     event.stopImmediatePropagation();
@@ -1343,7 +1435,7 @@ function ATua_clickWRedo(event) {
         delem = delem.parentNode;
     } while (!delem.classList.contains('btn'));
 
-    delem = delem.parentNode;
+    // delem = delem.parentNode;
 
     let route_ajax = delem.getAttribute('data-url');
     let _url = decodeURIComponent(route_ajax);

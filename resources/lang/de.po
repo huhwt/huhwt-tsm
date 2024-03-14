@@ -222,5 +222,11 @@ msgstr "Eintrag aus Übersicht entfernen"
 msgid "Save tagging state to the database"
 msgstr "Tagging-Zustand in der Datenbank speichern"
 
-msgid ""
-msgstr ""
+msgid "Tag assignments have been changed"
+msgstr "Zuweisungen von Markierungen wurden verändert"
+
+msgid "Save and proceed"
+msgstr "Erst speichern, dann weiter"
+
+msgid "Proceed without saving"
+msgstr "Ohne Speichern fortfahren"

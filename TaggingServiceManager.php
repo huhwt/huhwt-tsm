@@ -404,7 +404,8 @@ class TaggingServiceManager extends AbstractModule
 
         $TAGoptions         = $this->TAGconfigOptions();
         $this->TAGoptions   = $TAGoptions;
-        $this->activeTAG    = $TAGoptions[(int) $this->getPreference('TAG_Option', '0')];
+        $_optInd            = (int) $this->getPreference('TAG_Option', '0');
+        $this->activeTAG    = $TAGoptions[$_optInd];
 
         $xrefsN_ar          = [];
         $tagTxt_ar          = [];
@@ -426,13 +427,8 @@ class TaggingServiceManager extends AbstractModule
         if (count($xrefsC_ar) > 0)                                              // if there are any xrefs ...
             $this->put_TagsActs($tree, $this->tagsAction, '_');                 // ... store the default too
 
-        $notes              = $this->get_AllNotes($tree)->toArray();                // get all notes
-
-        foreach ($notes as $idx => $note) {                                 // initialize TagsActs with relevant notes
-            $_xref      = $note->xref();
-            $_tagTxt    = $note->getNote();
-            $xrefsN_ar[$_xref] = $_tagTxt;
-            $tagTxt_ar[$_tagTxt] = $_xref;
+        [ $xrefsN_ar, $tagTxt_ar ] = $this->getTagNotes_All($tree);
+        foreach( $xrefsN_ar as $_xref => $_tagTxt) {
             if (str_starts_with($_tagTxt, $_activeTAG)) {
                $this->put_TagsActs($tree, $_tagTxt, $_xref);
             }
