@@ -257,7 +257,8 @@ trait TSMtagsActions
         foreach( $TAGoptions as $ito => $_activeTAG) {
             foreach ($notes as $idx => $note) {                                 // store crossreferences for notes and texts
                 $_xref      = $note->xref();
-                $_tagTxt    = $note->getNote();
+                // $_tagTxt    = $note->getNote();
+                $_tagTxt  = $note->getAllNames()[0]['fullNN'];                  // we want only the note-'header', no CONT
                 if (str_starts_with($_tagTxt, $_activeTAG)) {
                     $xrefsN_ar[$_xref]      = $_tagTxt;
                     $tagTxt_ar[$_tagTxt]    = $_xref;

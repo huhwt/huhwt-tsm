@@ -91,14 +91,11 @@ trait TSMconfigTrait {
             FlashMessages::addMessage(I18N::translate("There must be at least 1 clause!."), "warning");
             return redirect($this->getConfigLink());
         }
-        // if (!str_starts_with($TAGoption_stock, 'TAG')) {
-        //     FlashMessages::addMessage(I18N::translate("There must be 'TAG' as the first clause!."), "warning");
-        //     return redirect($this->getConfigLink());
-        // }
 
-        $tagCOs = explode(',', $TAGoption_stock);
-        $tagCOtest = '';
-        foreach( $tagCOs as $tagCO ) {
+        $_tagCOs    = explode(',', $TAGoption_stock);
+        $tagCOtest  = '';
+        foreach( $_tagCOs as $_tagCO ) {
+            $tagCO  = trim($_tagCO);
             if ( $tagCO > '') {
                 if ( str_contains($tagCOtest, $tagCO)) {
                     FlashMessages::addMessage(I18N::translate('The clause "%s" is included more than once!.', $tagCO), 'danger');
@@ -108,6 +105,7 @@ trait TSMconfigTrait {
                 }
             }
         }
+        $TAGoption_stock    = $tagCOtest;
 
         $TAGoption          = Validator::parsedBody($request)->integer('TAGoption');
 
