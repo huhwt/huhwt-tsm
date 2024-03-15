@@ -231,3 +231,12 @@ msgstr "Record verwijderen uit overzicht"
 
 msgid "Save tagging state to the database"
 msgstr "Markeringsstatus opslaan in de database"
+
+msgid "Tag assignments have been changed"
+msgstr "Markeringstoewijzingen zijn gewijzigd"
+
+msgid "Save and proceed"
+msgstr "Opslaan en doorgaan"
+
+msgid "Proceed without saving"
+msgstr "Doorgaan zonder op te slaan"
