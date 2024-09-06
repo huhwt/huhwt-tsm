@@ -1,0 +1,233 @@
+# webtrees tagging service manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgid "Tagging service manager"
+msgstr "Gestor de etiquetas"
+
+msgid "Records in tags view"
+msgstr "Registros en vista de etiquetas"
+
+msgid "Tags view is empty."
+msgstr "La visión general de etiquetas no contiene ningún dato."
+
+msgid "Records in %s "
+msgstr "Registros en %s "
+
+msgid "Add this record to the tags view"
+msgstr "Añadir este registro de etiquetas"
+
+msgid "Delete records in the tags view entirely"
+msgstr "Eliminar por completo els registro de la visualización de etiquetas"
+
+msgid "Delete records in the tags view with selection option"
+msgstr "Eliminar registros a la visualización de etiquetas con opción de selección"
+
+msgid "TSM-Individual"
+msgstr "TSM-Individuo"
+
+msgid "TSM-Family"
+msgstr "TSN-Familia"
+
+msgid "TSM-Media"
+msgstr "TSM-Archivos multimedia"
+
+msgid "TSM-Location"
+msgstr "TSM-Ubicación"
+
+msgid "TSM-Note"
+msgstr "TSM-Noticias"
+
+msgid "TSM-Repository"
+msgstr "TSM-Depósito"
+
+msgid "TSM-Source"
+msgstr "TSM-Lista de fuentes"
+
+msgid "TSM-Submitter"
+msgstr "TSM-Remitente"
+
+msgid "Delete all records, a set of records of the same type, or selected records"
+msgstr "Eliminar todos los registros, un conjunto de registros del mismo tipo o los registros seleccionados"
+
+msgid "all records"
+msgstr "Todos los registros"
+
+msgid "set of records by type"
+msgstr "Conjunto de registros por tipo"
+
+msgid "select records to be deleted"
+msgstr "Seleccione el registro a eliminar:"
+
+msgid "records created by action"
+msgstr "Registros creados por la acción:"
+
+msgid "You have tried '%s' - it is not implemented yet."
+msgstr "Has intentado '%s' - pero, todavía no está implementado"
+
+msgid "Execute an action on records in the tags view"
+msgstr "Ejecute una acción en los registros de etiquetas"
+
+msgid "Visualize records in a diagram ..."
+msgstr "Visualizar los registros en un diagrama ..."
+
+msgid "... using TAM"
+msgstr "... utilizando TAM"
+
+msgid "... using Lineage"
+msgstr "... utilizando linaje"
+
+msgid "Privatize options"
+msgstr "Opciones de privacidad"
+
+msgid "back to show"
+msgstr "Volver al programa"
+
+msgid "back"
+msgstr "volver"
+
+msgid "Missing dependency - Install %s!"
+msgstr "Falta dependencia - instale %s!!"
+
+msgid "Records in tags view - Execute an action on them."instale
+msgstr "Registros de etiquetas - Ejecutar una acción sobre ellos"
+
+msgid "Performed actions fo fill the tags."
+msgstr "Acciones realizadas para rellenar las etiquetas"
+
+msgid "TSM-TagsActions"
+msgstr "TSM-Marcajes"
+
+msgid "TSM-TagsInfo"
+msgstr "TSM-Lista de marcas"
+
+msgid "No actions executed."
+msgstr "Ninguna acción realizada."
+
+msgid "Just a moment"
+msgstr "espere un momento"
+
+msgid "Click here to toggle highlighting of relevant records on or off"
+msgstr "Clique aquí per activar o desactivar el resaltado de los registros relevantes"
+
+msgid "Total number of entries: %s"
+msgstr "Cantidad total de entradas: %s"
+
+msgid "of which new entries: %s"
+msgstr "de las cuales, son entradas nuevas: %s"
+
+msgid "all persons to whom '%s' is linked"
+msgstr "Todas las personas a las cuales '%s' está vinculado"
+
+msgid "all families to whom '%s' is linked"
+msgstr "Todas las familias a las que '%s' está vinculado"
+
+msgid "Add '%s' to the tags view"
+msgstr "Agregar '%s' a la visualización de etiquetas"
+
+msgid "Active Tag"
+msgstr "Etiqueta activa"
+
+msgid "Click here to choose the 'Active Tag'"
+msgstr "Haga clic aquí per a elegir la 'Etiqueta activa'"
+
+msgid "Choose an other 'Active Tag'"
+msgstr "Elija una otra 'Etiqueta activa'"
+
+msgid "Choose a tag"
+msgstr "Elija una etiqueta"
+
+msgid "'Active Tag' is changed"
+msgstr "'Etiqueta activa' se modificará"
+
+msgid "Redo"
+msgstr "Rehacer"
+
+msgid "(none)"
+msgstr "(ninguna)"
+
+msgid "No colors available"
+msgstr "No hay colores disponibles"
+
+msgid "No colors defined"
+msgstr "No hay colores definidos"
+
+msgid "Create a new tag"
+msgstr "Crear una nueva etiqueta"
+
+msgid "Tag"
+msgstr "Etiqueta"
+
+msgid "Define the preferred tagging-clause"
+msgstr "Definir la cláusula de etiqueta preferente"
+
+msgid "TAG Actions - tags in stock"
+msgstr "ETIQUETAS - Definir especificaciones"
+
+msgid "TAG Definition - Choose a prefix"
+msgstr "Seleccionar ETIQUETA - pasará a "Etiqueta activa"
+
+msgid "You may define a ',' separated list of your preferred prefices"
+msgstr "Se puede definir una lista separada per ',' de sus etiquetas preferidas"
+
+msgid "'TAG' is recommended (and the default, if you omit this option), but it's more like a proposal"
+msgstr "'ETIQUETA' Se recomienda (es la predeterminada, si omiten esta opción), pero es, más bien, una propuesta..."
+
+msgid "Has to begin with %s ..."
+msgstr "Tiene que empezar por %s ..."
+
+msgid "There is a problem ..."
+msgstr "Hay un problema ..."
+
+msgid "Only prefix with no content specified"
+msgstr "Solo prefijos sin contenido especificado"
+
+msgid "The tag must start with %s"
+msgstr "La etiqueta ha de comenzar por %s"
+
+msgid "The tag '%s' is already in use"
+msgstr "La etiqueta '%s' ya está en uso"
+
+msgid "The tag has been created"
+msgstr "Se ha creado la etiqueta"
+
+msgid "Click here to undock/dock list of performed actions"
+msgstr "Haga clic aquí para cerrar/abrir la lista de acciones realizadas"
+
+msgid "Click and drag here to move the list of performed actions"
+msgstr "Haga clic aquí para mover la lista de marcadores"
+
+msgid "Active TagsAction"
+msgstr "Etiquetas activas"
+
+msgid "Select active TagsAction"
+msgstr "Seleccione etiqueta activa"
+
+msgid "Reset Filter - show all record in overview"
+msgstr "Restablecer filtro - Mostrar todos los registros en la vista general"
+
+msgid "Filter: select records for Active Tag in overview"
+msgstr "Filtro: Mostrar registros de datos para la selección activa en la vista general -Activado/Desactivado-"
+
+msgid "Filter: hide records for Active Tag in overview"
+msgstr "Filtro: Ocultar los registros de la etiqueta activa en la vista general -Activado/Desactivado-"
+
+msgid "Delete tag from overview and database"
+msgstr "Eliminar la selección de la vista general y de la base de datos"
+
+msgid "Remove record from overview"
+msgstr "Eliminar entrada de la vista general"
+
+msgid "Save tagging state to the database"
+msgstr "Guardar el estado de etiquetaje en la base de dades"

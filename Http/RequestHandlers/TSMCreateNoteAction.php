@@ -150,7 +150,7 @@ class TSMCreateNoteAction implements RequestHandlerInterface
             ]);
         }
 
-        $notes          = $this->get_AllNotes($tree)->toArray();                // get all notes
+        $notes          = $this->get_AllNotes($tree)->toArray();            // get all notes
 
         foreach ($notes as $idx => $note) {                                 // initialize TagsActs with relevant notes
             $_xref      = $note->xref();
