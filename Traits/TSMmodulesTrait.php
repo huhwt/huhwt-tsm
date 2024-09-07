@@ -28,7 +28,7 @@ trait TSMmodulesTrait
     public const CUSTOM_MODULE      = 'huhwt-tsm';
     public const CUSTOM_AUTHOR      = 'EW.H';
     public const CUSTOM_WEBSITE     = 'https://github.com/huhwt/' . self::CUSTOM_MODULE . '/';
-    public const CUSTOM_VERSION     = '2.1.18.2';
+    public const CUSTOM_VERSION     = '2.1.20.0';
     public const CUSTOM_LAST        = 'https://github.com/huhwt/' .
                                         self::CUSTOM_MODULE. '/blob/master/latest-version.txt';
 
