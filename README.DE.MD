@@ -9,6 +9,10 @@
 
 Dieses [webtrees](https://www.webtrees.net/) Modul ist ein Add-On zu **huhwt-cce** , dem Stammbaum-Sammelbehälter mit Erweiterungen.
 
+Dies ist ein webtrees 2.2 Modul - kann nicht mit webtrees 2.1 benutzt werden.
+
+Für Systeme mit webtrees 2.1 bitte huhwt-tsm Release v2.1.20.0 bzw. huhwt-tsm Branch 2.1 verwenden.
+
 Achtung:
 ~~~
   Dieses muß in einer PHP 8.2+ System-Umgebung betrieben werden, weil

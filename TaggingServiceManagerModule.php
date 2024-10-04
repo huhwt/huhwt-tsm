@@ -555,7 +555,7 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Traits\TSMvizActions;
             'user_id'    => Auth::id(),
         ]);
 
-        $pending_changes_service = app(PendingChangesService::class);
+        $pending_changes_service = Registry::container()->get(PendingChangesService::class);
         assert($pending_changes_service instanceof PendingChangesService);
 
         $pending_changes_service->acceptRecord($record);

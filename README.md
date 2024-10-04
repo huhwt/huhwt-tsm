@@ -7,8 +7,11 @@
 ![Latest Release](https://img.shields.io/github/v/release/huhwt/huhwt-tsm)
 [![Downloads](https://img.shields.io/github/downloads/huhwt/huhwt-tsm/total)]()
 
-This [webtrees](https://www.webtrees.net/) custom module is an add-on to huhwt-cce , the 
-clippings-cart-enhanced. 
+This [webtrees](https://www.webtrees.net/) custom module is an add-on to huhwt-cce , the clippings-cart-enhanced. 
+
+This is a webtrees 2.2 module - It cannot be used with webtrees 2.1.
+
+For webtrees 2.1 use the huhwt-tsm Release v2.1.20.0 respectively the huhwt-tsm Branch 2.1.
 
 Attention:
 ~~~

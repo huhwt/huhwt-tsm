@@ -107,7 +107,6 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Traits\TSMvizActions;
 
 // control functions
 use stdClass;
-use function app;
 use function array_filter;
 use function array_keys;
 use function array_map;
@@ -1361,7 +1360,7 @@ class TaggingServiceManager extends AbstractModule
      */
     public function boot(): void
     {
-        $router_container = app(RouterContainer::class);
+        $router_container = Registry::container()->get(RouterContainer::class);
         assert($router_container instanceof RouterContainer);
         // $router = $router_container->getMap();
 
