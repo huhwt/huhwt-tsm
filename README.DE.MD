@@ -11,12 +11,11 @@ Dieses [webtrees](https://www.webtrees.net/) Modul ist ein Add-On zu **huhwt-cce
 
 Dies ist ein webtrees 2.2 Modul - kann nicht mit webtrees 2.1 benutzt werden.
 
-Für Systeme mit webtrees 2.1 bitte huhwt-tsm Release v2.1.20.0 bzw. huhwt-tsm Branch 2.1 verwenden.
+Für Systeme mit webtrees 2.1 bitte das letzte Release aus dem huhwt-tsm Branch 2.1 verwenden.
 
 Achtung:
 ~~~
-  Dieses muß in einer PHP 8.2+ System-Umgebung betrieben werden, weil
-  einige relevante Sprach-Features vorher nicht verfügbar waren.
+  Dieses muß in einer PHP 8.3+ System-Umgebung betrieben werden.
 ~~~
 
 ## Inhalt
@@ -127,8 +126,8 @@ Die vereinfachte Zuweisung und Entfernung der (s)NOTEs und die erweiterte Fähig
 
 ## Voraussetzungen
 
-Dieses Modul setzt mindestens **PHP 8.2** voraus.
-Dieses Modul setzt mindestens **Webtrees** Version 2.1.18 voraus.
+Dieses Modul setzt mindestens **PHP 8.3** voraus.
+Dieses Modul setzt mindestens **Webtrees** Version 2.2.0.0 voraus.
 Dieses Modul hat ansonsten die gleichen allgemeinen Anforderungen wie für **Webtrees** insgesamt genannt [webtrees#system-requirements](https://github.com/fisharebest/webtrees#system-requirements).
 
 <a name="installation"></a>
@@ -172,7 +171,7 @@ Heißen Dank an [Hermann Hartenthaler](https://github.com/hartenthaler/) für di
 ## Lizenz
 
 * Copyright (C) 2023/2024 huhwt - EW.H
-* Derived from **webtrees** - Copyright 2023 webtrees development team.
+* Derived from **webtrees** - Copyright 2024 webtrees development team.
 
 Dieses Programm ist quelloffen und unterliegt den Bedingungen der GNU General Public License, entweder der Version 3 der Lizenz oder (nach Ihrer Wahl) einer späteren Version.
 

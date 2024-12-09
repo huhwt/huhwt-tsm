@@ -118,7 +118,7 @@ class TSMCreateNoteAction implements RequestHandlerInterface
         // Accept this pending change
         $record = Registry::gedcomRecordFactory()->new($xref, $gedcom, null, $tree);
 
-        $pending_changes_service = app(PendingChangesService::class);
+        $pending_changes_service = Registry::container()->get(PendingChangesService::class);
         assert($pending_changes_service instanceof PendingChangesService);
 
         $pending_changes_service->acceptRecord($record);

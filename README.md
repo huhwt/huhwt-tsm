@@ -11,12 +11,11 @@ This [webtrees](https://www.webtrees.net/) custom module is an add-on to huhwt-c
 
 This is a webtrees 2.2 module - It cannot be used with webtrees 2.1.
 
-For webtrees 2.1 use the huhwt-tsm Release v2.1.20.0 respectively the huhwt-tsm Branch 2.1.
+For webtrees 2.1 use the latest release of the huhwt-tsm Branch 2.1.
 
 Attention:
 ~~~
-  This module requires to be operated in a PHP 8.2-onward system 
-  environment due to some features not have been available before.
+  This module requires to be operated in a PHP 8.3-onward system.
 ~~~
 
 ## Contents
@@ -41,8 +40,8 @@ If such NOTEs are structured according to a defined scheme, then additional info
 <a name="requirements"></a>
 ## Requirements
 
-This module requires **PHP 8.2** at least.
-This module requires **webtrees** version 2.1.18 at least.
+This module requires **PHP 8.3** at least.
+This module requires **webtrees** version 2.2.0.0 at least.
 This module has the same general requirements as [webtrees#system-requirements](https://github.com/fisharebest/webtrees#system-requirements).
 
 <a name="installation"></a>
@@ -87,7 +86,7 @@ Special thanks to [hartenthaler](https://github.com/hartenthaler/) for the basic
 ## License
 
 * Copyright (C) 2023/2024 huhwt - EW.H
-* Derived from **webtrees** - Copyright 2023 webtrees development team.
+* Derived from **webtrees** - Copyright 2024 webtrees development team.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
