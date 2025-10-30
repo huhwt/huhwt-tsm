@@ -3,7 +3,7 @@
 /**
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2024-2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
  * Copyright (C) 2023 webtrees development team.
@@ -28,7 +28,7 @@ trait TSMmodulesTrait
     public const CUSTOM_MODULE      = 'huhwt-tsm';
     public const CUSTOM_AUTHOR      = 'EW.H';
     public const CUSTOM_WEBSITE     = 'https://github.com/huhwt/' . self::CUSTOM_MODULE . '/';
-    public const CUSTOM_VERSION     = '2.2.1.0';
+    public const CUSTOM_VERSION     = '2.4.1.0';
     public const CUSTOM_LAST        = 'https://github.com/huhwt/' .
                                         self::CUSTOM_MODULE. '/blob/master/latest-version.txt';
 
@@ -79,7 +79,7 @@ trait TSMmodulesTrait
     public function title(): string
     {
         /* I18N: Name of a module */
-        return $this->huh . ' ' . I18N::translate(self::CUSTOM_TITLE);
+        return $this->huh_short . ' ' . I18N::translate(self::CUSTOM_TITLE);
     }
 
     /**
@@ -89,7 +89,7 @@ trait TSMmodulesTrait
      */
     protected function menuTitle(): string
     {
-        return $this->huh . ' ' . I18N::translate(self::CUSTOM_TITLE);
+        return $this->huh_short . ' ' . I18N::translate(self::CUSTOM_TITLE);
     }
 
     /**

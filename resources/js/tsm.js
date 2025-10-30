@@ -1,10 +1,10 @@
 /*
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
- * Copyright (C) 2023 webtrees development team.
+ * Copyright (C) 2024-2025 webtrees development team.
  *
  * This is the client side of tagging functions
  * 
@@ -30,6 +30,7 @@ var TagsAction_none     = '';       // the translated '(none)'-text
 
 var TSMcolorACT         = '';
 var TSMcolorOFF         = '';
+var TSMcolorCnt         = 0
 
 var saveEnabled         = false;    // initial state of TSMbtnSave is disabled
 
@@ -52,6 +53,9 @@ const ATua_btn_aTag     = document.getElementById('TSMbtnATag');        // input
 const ATua_btn_Save     = document.getElementById('TSMbtnSave');        // Save to database
 const ATua_btn_Redo     = document.getElementById('TSMbtnRedo_DO');     // Redo (reload Window) -> target for click
 
+const ATua_btn_PushAll  = document.getElementById('TSMpushAll');        // Push active tagsAction to all visible records
+const ATua_btn_RemoveAll  = document.getElementById('TSMremoveAll');    // Remove active tagsAction from all visible records
+
 const ATlbb_tagsAction  = document.getElementById('tagsAction');        // 1. element of tagsActions ...
 const ATlbb_TAtext_empty    = ATlbb_tagsAction.innerHTML;               // ... we need the text as indicator for empty state
 const AT_ShowXXX_id         = 'TSMshowXXX';
@@ -59,9 +63,9 @@ const AT_ShowXXX            = document.getElementById(AT_ShowXXX_id);   // the S
 const AT_ShowAll_id         = 'TSMshowAll';
 const AT_ShowActive_id      = 'TSMshowActive';
 const AT_HideActive_id      = 'TSMhideActive';
-const ATlbh_btn_ShowAll     = document.getElementById(AT_ShowAll_id);   // Control - Show all records
-const ATlbh_btn_ShowActive  = document.getElementById(AT_ShowActive_id);// Control - Show only records for active tagsAction
-const ATlbh_btn_HideActive  = document.getElementById(AT_HideActive_id);// Control - Hide the records with active tagsAction
+const ATlbh_btn_ShowAll     = document.getElementById(AT_ShowAll_id);   // Filter - Show all records
+const ATlbh_btn_ShowActive  = document.getElementById(AT_ShowActive_id);// Filter - Show only records for active tagsAction
+const ATlbh_btn_HideActive  = document.getElementById(AT_HideActive_id);// Filter - Hide the records with active tagsAction
 
 const ATrbb_TSMactTags      = document.getElementById('TSMtaBody');     // For srolling
 
@@ -238,9 +242,9 @@ function RT_toggleCollapse(helem) {
  */
 function ATlb_prepEvents() {
 
-    let _showBoxs = document.getElementsByClassName('TSMshow_box');
-    for (const _showBox of _showBoxs) {
-        _showBox.addEventListener( 'click', event => {
+    let _filterBoxs = document.getElementsByClassName('TSMshow_filter');
+    for (const _filterBox of _filterBoxs) {
+        _filterBox.addEventListener( 'click', event => {
             ATlbh_clickShowBox(event);
         });
     }
@@ -255,6 +259,8 @@ function ATrb_prepEvents() {
     ATrbr_prepTAdeferredAction(1,'TSMbtnATag');
     ATrbr_prepTAdeferredAction(2,'btnAddNote');
     ATrbr_prepTAdeferredAction(3,'TSMbtnRedo');
+    ATrbr_prepTAallRecords('TSMbtnPushAll', true);
+    ATrbr_prepTAallRecords('TSMbtnRemoveAll', false);
 }
 
 /**
@@ -410,7 +416,7 @@ function ATrbr_clickTAtoggler(ATtbElem, ATtrElem, ATelemev, ATelemevt) {
     let TSMcolgets = ATgetTSMcolor(ATtbElem, ATtrElem, doColor);
     if (typeof(TSMcolgets) == 'string')
         return;
-    
+
     TSMcolorACT = TSMcolgets[0];
     TSMcolorOFF = TSMcolgets[1];
     let colorsOnCnt = TSMcolgets[2];
@@ -492,7 +498,7 @@ function ATrbr_clickTAtoggler(ATtbElem, ATtrElem, ATelemev, ATelemevt) {
 }
 
 /**
- * manage click for elements with deferred action because off previously checking if there are any valid updates
+ * manage click for elements with deferred action because of previously checking if there are any valid updates
  * 
  */
 function ATrbr_prepTAdeferredAction(_TTSid, elementId) {
@@ -554,6 +560,17 @@ function DialogToSave_Action(_TTSid) {
 
 }
 
+/**
+ * manage click for elements with direct action on client side
+ * 
+ */
+function ATrbr_prepTAallRecords(elementId, bAction) {
+    let etest = document.getElementById(elementId);
+    etest.addEventListener( "click", function(ev) {
+        let _bA = bAction;
+        RT_execTAallAction(bAction);                      // ... to feed the handler
+    });
+}
 
 /**
  * Transfer the highlighting to the data lines
@@ -752,10 +769,10 @@ function RT_execHideActive(ATelemevt) {
             trCa++;
             let tr_text = tr_line.children[1].innerHTML;                // ... the badges are in the middle child ...
             if (tr_text.includes('TSMhideActive')) {                    // ... if one of them is selected ...
-                __toggle_Attribute(tr_line, true, 'hidden');              // ... the whole line is set visible ...
-                trC++;                                                    // add counter
+                __toggle_Attribute(tr_line, true, 'hidden');                // ... the whole line is set visible ...
+                trC++;                                                      // add counter
             } else 
-                __toggle_Attribute(tr_line, false, 'hidden');             // ... we don't want to show unmatched lines
+                __toggle_Attribute(tr_line, false, 'hidden');               // ... we don't want to show unmatched lines
         }
 
         let tbHead = tbody.previousElementSibling;
@@ -764,6 +781,44 @@ function RT_execHideActive(ATelemevt) {
         tbHBadge.textContent = ' '  + trCa.toString() + ' ';
     }
 }
+
+/**
+ * Handle the AssignToAll- / RemoveFromAll- (Visible)-Action
+ * 
+ * bAction      -> true: assign ActiveTag if it is not already set    false: remove ActiveTag if is set
+ */
+function RT_execTAallAction(bAction) {
+    let tbodies = document.querySelectorAll('table.TSM-facts-table > tbody');
+    for ( const tbody of tbodies) {
+        if (!tbody.getAttribute('style')) {
+            let trC = 0;                                                        // we want to count badged lines
+            if (bAction) {                                                  // we want to assign the ActiveTag ...
+                let tr_lines = tbody.querySelectorAll('tr.TSM_Rline');          // ... so we collect the table-lines carrying gedcom-records ...
+                for ( const tr_line of tr_lines) {                              // ... and traverse over it ...
+                    if (!tr_line.getAttribute('hidden')) {                          // ... and 'hidden'-attribute is not set ...
+                        let td_xref = tr_line.children[1];                      // ... the badges are in the middle child ...
+                        let tr_text = td_xref.innerHTML;
+                        if (!tr_text.includes(TagsAction_actON)) {                  // ... if none of them contains the ActiveTag ...
+                                RT_toggleTAaction(td_xref);                             // ... it will be inserted
+                            }
+                    }
+                }
+            } else {
+                let tr_lines = tbody.querySelectorAll('tr.TSM_Rline');          // ... so we collect the table-lines carrying gedcom-records ...
+                for ( const tr_line of tr_lines) {                              // ... and traverse over it ...
+                    if (!tr_line.getAttribute('hidden')) {                          // ... and 'hidden'-attribute is not set ...
+                        let td_xref = tr_line.children[1];                      // ... the badges are in the middle child ...
+                        let tr_text = td_xref.innerHTML;
+                        if (tr_text.includes(TagsAction_actON)) {                   // ... if ActiveTag is found ...
+                            RT_toggleTAaction(td_xref);                                 // ... it will be removed
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 /**
  * Create tagsAction Table structure
@@ -872,6 +927,7 @@ function execXRdelete(delem) {
  * add/remove the active tag in records tables
  */
 function RT_toggleTAaction(elemev) {
+
     function _addTAction(elemev, td_badge0) {
         let td_badgex = td_badge0.cloneNode();
         td_badgex.innerText = ' ' + TagsAction_actON;
@@ -1026,7 +1082,9 @@ function ATlbh_clickShowBox(event) {
 }
 
 /**
- * perform 'TSMshowAll' actions
+ * perform 'TSMshowAll' filter
+ * 
+ * remove activated filters
  */
 function ATlbh_execShowAll() {
     ATlbh_setShowBox_active(AT_ShowAll_id, true);
@@ -1044,7 +1102,7 @@ function ATlbh_execShowAll() {
     AT_ShowXXX.setAttribute('acttahide','');
 }
 /**
- * perform 'TSMshowActive' actions
+ * perform 'TSMshowActive' filter
  * 
  * doBox        boolean     true: Show the elements with active tag     false: UnShow the elements with active tag
  */
@@ -1094,7 +1152,7 @@ function ATlbh_execShowActive(doBox) {
     }
 }
 /**
- * perform 'TSMhideActive' actions
+ * perform 'TSMhideActive' filter
  * 
  * doBox        boolean     true: Hide the elements with active tag anyway    false: Test which element to UnHide
  */

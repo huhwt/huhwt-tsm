@@ -3,7 +3,7 @@
 /*
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2024-2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
  * Copyright (C) 2023 webtrees development team.
@@ -432,15 +432,22 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Traits\TSMvizActions;
             foreach( $tags_del as $_xrefS => $_tags ) {
                 $tagsActs   = $tags[$_tree][$_xrefS];
                 $_tagActs   = [];
-                if ($tagsActs != $none_action)
+                if ($tagsActs != $none_action) {
                     $_tagActs = explode(';', $tagsActs);
+                }
                 foreach ( $_tags as $tAction ) {
                     if (($i = array_search($tAction, $_tagActs)) !== FALSE) {
-                        unset($_tagActs[$i]);
+                        // unset($_tagActs[$i]);
+                        array_splice($_tagActs, $i, 1);
                     }
                 }
                 if ( count($_tagActs) > 0 ) {
-                    count($_tagActs) == 1 ? $tagsActs = $_tagActs[0] : $tagsActs = implode(';', $_tagActs);
+                    if ( count($_tagActs) == 1 ) {
+                        $tagsActs = $_tagActs[0];
+                    } else {
+                        $tagsActs = implode(';', $_tagActs);
+                    }
+                    // count($_tagActs) == 1 ? $tagsActs = $_tagActs[0] : $tagsActs = implode(';', $_tagActs);
                 } else {
                     $tagsActs = $none_action;
                 }

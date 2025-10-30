@@ -73,17 +73,17 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMCreateNoteM
                             <div class="tsm-th tsm-td tsm-tc1" ><?= $header_actTaction ?></div>
                             <div class="tsm-th tsm-td tsm-tc2" id="TSMshowXXX" actSB="" actTAshow="" actTAhide="">
                                 <div>
-                                    <button type="button" id="TSMshowAll" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Reset Filter - show all record in overview') ?>" disabled>
+                                    <button type="button" id="TSMshowAll" class="TSMshow_box TSMshow_filter btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Reset Filter - show all record in overview') ?>" disabled>
                                         <?= view('icons/note'); ?>
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="button" id="TSMshowActive" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: select records for Active Tag in overview') ?>"  disabled>
+                                    <button type="button" id="TSMshowActive" class="TSMshow_box TSMshow_filter btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: select records for Active Tag in overview') ?>"  disabled>
                                         <?= view('icons/eye'); ?>
                                     </button>
                                 </div>
                                 <div>
-                                    <button type="button" id="TSMhideActive" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: hide records for Active Tag in overview') ?>"  disabled>
+                                    <button type="button" id="TSMhideActive" class="TSMshow_box TSMshow_filter btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Filter: hide records for Active Tag in overview') ?>"  disabled>
                                         <?= view('icons/eye-slash'); ?>
                                     </button>
                                 </div>

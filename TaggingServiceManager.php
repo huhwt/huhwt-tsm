@@ -2,7 +2,7 @@
 /*
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2024-2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
  * Copyright (C) 2023 webtrees development team.
@@ -286,6 +286,7 @@ class TaggingServiceManager extends AbstractModule
      * @var string
      */
     private string $huh;
+    private string $huh_short;
 
     /**
      * Check for huhwt/huhwt-wttam done?
@@ -354,7 +355,8 @@ class TaggingServiceManager extends AbstractModule
         $this->levelDescendant     = PHP_INT_MAX;
         $this->exportFilenameDOWNL = self::FILENAME_DOWNL;
         $this->exportFilenameVIZ   = self::FILENAME_VIZ;
-        $this->huh                 = json_decode('"\u210D"') . "&" . json_decode('"\u210D"') . "wt";
+        $this->huh                 = '-' . json_decode('"\u210D"') . "&" . json_decode('"\u210D"') . "wt-";
+        $this->huh_short           = json_decode('"\u210D"');
         $this->huhwttam_checked    = false;
         $this->huhwtlin_checked    = false;
         $this->all_RecTypes        = true;
@@ -408,6 +410,7 @@ class TaggingServiceManager extends AbstractModule
 
         $xrefsN_ar          = [];
         $tagTxt_ar          = [];
+        $this->erase_TreeTags($tree);
         $_activeTAG         = $this->activeTAG . ':';
 
         if ( isset($_SERVER['HTTPS_HOST']))
@@ -453,19 +456,21 @@ class TaggingServiceManager extends AbstractModule
             $_xrefC         = $linkXN->l_from;
             $_xrefN         = $linkXN->l_to;
             $_tAction       = $xrefsN_ar[$_xrefN];
-            if (($tags[$_tree][$_xrefC] ?? '_NIX_') === '_NIX_') {
-                $tags[$_tree][$_xrefC] = $_tAction;
-                Session::put('tags', $tags);
-            } else {
-                $tagsActs   = $tags[$_tree][$_xrefC];
-                if (!str_contains($tagsActs, $_tAction)) {
-                    if ($tagsActs == $none_action) {
-                        $tagsActs = $_tAction;
-                    } else {
-                        $tagsActs = $tagsActs . ';' . $_tAction;
-                    }
-                    $tags[$_tree][$_xrefC] = $tagsActs;
+            if (!(($xrefsC_ar[$_xrefC] ?? '_NULL_') === '_NULL_')) {
+                if (($tags[$_tree][$_xrefC] ?? '_NIX_') === '_NIX_') {
+                    $tags[$_tree][$_xrefC] = $_tAction;
                     Session::put('tags', $tags);
+                } else {
+                    $tagsActs   = $tags[$_tree][$_xrefC];
+                    if (!str_contains($tagsActs, $_tAction)) {
+                        if ($tagsActs == $none_action) {
+                            $tagsActs = $_tAction;
+                        } else {
+                            $tagsActs = $tagsActs . ';' . $_tAction;
+                        }
+                        $tags[$_tree][$_xrefC] = $tagsActs;
+                        Session::put('tags', $tags);
+                    }
                 }
             }
         }
@@ -493,12 +498,14 @@ class TaggingServiceManager extends AbstractModule
 
         $tagsLabels         = $this->get_TagsActsMap($tree);
         $tagsValues         = $this->get_TagsActs($tree);
-        $title              = I18N::translate('Tagging service manager');
+        $title              = $this->huh_short . ' ' . I18N::translate('Tagging service manager');
+        $ptitle             = $this->huh . ' ' . I18N::translate('Tagging service manager');
 
+        // javascript - Save to Database
         $routeSDbAjax = e(route(TaggingServiceManagerModule::class, ['module' => $this->name(), 'tree' => $tree->name()]));
-
+        // javascript - Redo
         $routeWReAjax = e(route(TaggingServiceManagerModule::class, ['module' => $this->name(), 'tree' => $tree->name(), 'action' => 'redoWindow']));
-
+        // javascript - Change Active Tag
         $routeATcAjax = e(route(TSMchooseATagModal::class, ['module' => $this->name(), 'tree' => $tree->name(), 'action' => 'chooseActiveTag', 'activeTag' => $this->activeTAG ]));
 
         return $this->viewResponse($this->name() . '::' . 'showTags/showTags', [
@@ -506,6 +513,7 @@ class TaggingServiceManager extends AbstractModule
             'types'         => self::TYPES_OF_RECORDS,
             'recordTypes'   => $recordTypes,
             'title'         => $title,
+            'ptitle'        => $ptitle,
             'header_recs'   => I18N::translate(self::SHOW_RECORDS),
             'header_acts'   => I18N::translate(self::SHOW_ACTIONS),
             'activeTag'     => $this->activeTAG,
@@ -1097,37 +1105,6 @@ class TaggingServiceManager extends AbstractModule
     }
 
     /**
-     * Collect the keys of the records of each type in the tagging service.
-     * The order of the Xrefs in the tags results from the order of
-     * the calls during insertion and is not further separated according to
-     * their origin.
-     * This function distributes the Xrefs according to their origin to a predefined structure.
-     *
-     * @param Tree $tree
-     * @param array $recordTypes
-     *
-     * @return array    // string[] string[]
-     */
-    private function collectRecordKeysInCart(Tree $tree, array $recordTypes): array
-    {
-        $records = $this->getRecordsInCart($tree);
-        $recordKeyTypes = array();                  // type => keys
-        foreach ($recordTypes as $key => $class) {
-            $recordKeyTypeXrefs = [];
-            foreach ($records as $record) {
-                if ($record instanceof $class) {
-                    $xref = $this->getXref_fromRecord($record);
-                    $recordKeyTypeXrefs[] = $xref;
-                }
-            }
-            if ( count($recordKeyTypeXrefs) > 0) {
-                $recordKeyTypes[strval($key) ] = $recordKeyTypeXrefs;
-            }
-        }
-        return $recordKeyTypes;
-    }
-
-    /**
      * Collect the records of each type in the tagging service.
      * The order of the Xrefs in the tags results from the sequence of the calls
      * during insertion and may be relevant for subsequent actions.
@@ -1157,50 +1134,6 @@ class TaggingServiceManager extends AbstractModule
             }
         }
         return $recordKeyTypes;
-    }
-
-    /**
-     * Get the records in the tagging service. 
-     * There may be use cases where it makes sense to output the records sorted
-     * by their Xrefs, but for our purposes it is rather disadvantageous,
-     * so sorting is optional and disabled by default.
-     *
-     * @param Tree $tree
-     * @param bool $do_sort
-     *
-     * @return array
-     */
-    private function getRecordsInCart(Tree $tree, bool $do_sort=false): array
-    {
-        $xrefs = $this->get_CartXrefs($tree);
-        $records = array_map(static function (string $xref) use ($tree): ?GedcomRecord {
-            return Registry::gedcomRecordFactory()->make($xref, $tree);
-        }, $xrefs);
-
-        // some records may have been deleted after they were added to the tags, remove them
-        // $records = array_filter($records);
-
-        if ($do_sort) {
-            // group and sort the records
-            uasort($records, static function (GedcomRecord $x, GedcomRecord $y): int {
-                return $x->tag() <=> $y->tag() ?: GedcomRecord::nameComparator()($x, $y);
-            });
-        }
-
-        return $records;
-    }
-
-    /**
-     * Get the XREF for the record in the tagging service.
-     *
-     * @param GedcomRecord $record
-     *
-     * @return string 
-     */
-    private function getXref_fromRecord(GedcomRecord $record): string
-    {
-        $xref = $record->xref();
-        return $xref;
     }
 
     /**
@@ -1395,6 +1328,8 @@ class TaggingServiceManager extends AbstractModule
         View::registerCustomView('::icons/eye', $this->name(). '::icons/eye');
         View::registerCustomView('::icons/eye-slash', $this->name(). '::icons/eye-slash');
         View::registerCustomView('::icons/redo', $this->name(). '::icons/redo');
+        View::registerCustomView('::icons/push-to-all', $this->name(). '::icons/push-to-all');
+        View::registerCustomView('::icons/remove-all', $this->name(). '::icons/remove-all');
 
         $TSMjs = $this->resourcesFolder() . 'js/TSMtable-actions.js';
         Session::put('TSMtable-actions.js', $TSMjs);

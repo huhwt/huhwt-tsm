@@ -37,6 +37,8 @@ Gedcom knows the NOTE structure element. It may be subordinate to another struct
 
 If such NOTEs are structured according to a defined scheme, then additional information dimensions can be created, for example by assigning a corresponding NOTE to all people in a lineage and from then on they can be directly selected using this characteristic.
 
+For a more detailed description of the functionality, please refer as yet to README.DE.MD (german language).
+
 <a name="requirements"></a>
 ## Requirements
 
@@ -85,8 +87,8 @@ Special thanks to [hartenthaler](https://github.com/hartenthaler/) for the basic
 <a name="license"></a>
 ## License
 
-* Copyright (C) 2023/2024 huhwt - EW.H
-* Derived from **webtrees** - Copyright 2024 webtrees development team.
+* Copyright (C) 2023-2025 huhwt - EW.H
+* Derived from **webtrees** - Copyright 2024-2025 webtrees development team.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

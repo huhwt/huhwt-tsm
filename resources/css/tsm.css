@@ -1,6 +1,6 @@
 /**
 * Icon converted via: https://base64.guru/converter/encode/image
-* Zusätzliche Steuerelemente Tagging Service Manager
+* Zusätzliche Steuerelemente Tagging Service Manager - Copyright (C) 2025 huhwt. All rights reserved.
 */
 
 .tsm-page-options {
@@ -119,27 +119,23 @@ table + h4 {
     height: 1em;
 }
 
-.tsm-td1 {
-    width: 100%;
-}
-
-.TSMfloat .tsm-td1>.tsm-tc1 {
-    width: 75%;
-}
-.tsm-td1>.tsm-tc2 {
+.tsm-tc-actions {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-#TSMshowAll {
-    color: black;
+.tsm-td1 {
+    width: 100%;
 }
-#TSMshowActive {
-    color: black;
+
+.TSMfloat .tsm-td1>.tsm-tc1 {
+    width: 70%;
 }
-#TSMhideActive {
-    color: black;
+.tsm-td1>.tsm-tc2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .TSMshow_box {
@@ -350,7 +346,7 @@ button.tsm-btn-sm-2 {
 
 .TSMfloat {
     position: fixed;
-    width: 32%;
+    width: 40%;
     min-width: 570px;
     height: auto;
     padding: 2em 2em 1em 2em;

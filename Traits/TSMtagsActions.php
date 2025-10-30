@@ -3,7 +3,7 @@
 /**
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2024-2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
  * Copyright (C) 2023 webtrees development team.
@@ -167,6 +167,14 @@ trait TSMtagsActions
     {
         $tags = Session::get('tags', []);
         $tags[$tree->name()] = [];
+        Session::put('tags', $tags);
+        return $tags;
+    }
+
+    private function erase_TreeTags(Tree $tree) : array
+    {
+        $tags = Session::get('tags', []);
+        unset($tags[$tree->name()]);
         Session::put('tags', $tags);
         return $tags;
     }

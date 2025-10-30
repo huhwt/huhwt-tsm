@@ -3,7 +3,7 @@
 /*
  * webtrees - tagging service manager
  *
- * Copyright (C) 2024 huhwt. All rights reserved.
+ * Copyright (C) 2024-2025 huhwt. All rights reserved.
  *
  * webtrees: online genealogy / web based family history software
  * Copyright (C) 2023 webtrees development team.

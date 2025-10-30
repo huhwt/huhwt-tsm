@@ -86,15 +86,19 @@ Die Überschrift **'Auflistung Markierungen'** ist selbst ein aktives Element, a
 
 <p align="center"><img src="_ASSETTS/TSM-ActiveTAG-3-1.png" alt="TSM-ActiveTAG-3-1.png" align="left" width="50%"><img src="_ASSETTS/TSM-ActiveTAG-3-2.png" alt="TSM-ActiveTAG-3-2.png" align="right" width="50%"></p>
 
-Im eingebundenen Zustand zeigt der **Aktions-Bereich** des Blocks drei Schaltflächen - 'Speichern', 'Neu laden' und 'Aktive Kennung'.  
+Im eingebundenen Zustand zeigt der **Aktions-Bereich** des Blocks fünf Schaltflächen - 'Speichern', 'Allen zuweisen', 'Aus allen entfernen', 'Neu laden' und 'Aktive Kennung'.  
  * 'Speichern'-Schaltfläche
     Sie wird aktiviert, sobald eine erste Zuordnung vorgenommen wurde. Die **'Speichern'**-Schaltfläche überträgt das gesamte Inventar der 'Datensätze in Markierungsübersicht' auf die Server-Seite. Dort findet ein Abgleich mit dem Zustand der Markierungs-Zuordnungen in der 'tags'-Struktur statt. Neu zugeordnete bzw. entfernte Zuordnungen werden in die Datenbank übernommen. Die Operationen auf der Datenbank werden direkt umgesetzt, die fallweise erforderliche Bestätigung ist ausgesetzt. Die ganze Seite wird dann abschliessend neu aufgebaut.
+ * 'Allen zuweisen'-Schaltfläche
+    Sie ist/wird aktiviert, falls mindestens eine 'Aktive Markierung' vorhanden ist. Die **'Allen zuweisen'**-Schaltfläche fügt die 'Aktive Markierung' - sofern noch nicht enthalten - allen in der Markierungs-Übersicht sichtbaren Datensätzen hinzu.
+ * 'Aus allen entfernen'-Schaltfläche
+    Sie ist/wird aktiviert, falls mindestens eine 'Aktive Markierung' vorhanden ist. Die **'Aus allen entfernen'**-Schaltfläche entfernt die 'Aktive Markierung' - falls enthalten - aus allen in der Markierungs-Übersicht sichtbaren Datensätzen.
  * 'Neu laden'-Schaltfläche
     Aktionen im Admin-Kontext - Wechsel der 'Aktiven Kennung' und das Neuanlegen unverbundener (s)NOTEs - sowie Aktionen im allgemeinen Webtrees-Kontext - Verknüpfung von Personen und Familien mit (s)NOTEs in den einschlägigen webtrees-Ansichten und Löschen einer (s)NOTE aus der entsprechenden Listen-Ansicht - führen dazu, dass die Zustände in der Datenbank nicht mehr mit dem Abbild in TSM übereinstimmen. Die **'Neu laden'**-Schaltfläche bewirkt, dass Zustand und Abbild wieder synchronisiert werden.
  * 'Aktive Kennung'-Schaltfläche
     Die 'Aktive Kennung' ist eine Einstellung in den Modul-Preferenzen. Webtrees erlaubt Zugriff dort nur im Admin-Kontext, das könnte dazu führen, dass man immer wieder dorthin und dann zurück in TSM wechseln müsste (nebst Synchronisierungs-Thematik). Die **'Aktive Kennung'**-Schaltfläche verkürzt den Prozess isofern, dass man in einer Übersicht der definierten Kennungen eine andere wählen kann, welche dann zur neuen Aktiven Kennung wird. Die Modul-Preferenz wird entsprechend umgesetzt und insbesondere auch dafür gesorgt, dass der 'tags'-Zustand mit der neuen Vorgabe synchronisiert ist.
 
-Im freigestellten Zustand zeigt der Aktions-Bereich neben der Überschrift nur noch 2 Elemente: 'Speichern' und 'Neu laden' sind ausgeblendet, 'Aktive Kennung' ist nur noch informativ. Neu erschienen ist ein schlichtes Quadrat, welches als Aktionsfläche für eine Drag-n-Drop Funktion dient: Klicken und Ziehen dieser Fläche verschiebt den ganzen Aktions-Bereich.
+Im freigestellten Zustand zeigt der Aktions-Bereich neben der Überschrift nur noch 2 Elemente: 'Speichern','Allen zuweisen','Aus allen entfernen' und 'Neu laden' sind ausgeblendet, 'Aktive Kennung' ist nur noch informativ. Neu erschienen ist ein schlichtes Quadrat, welches als Aktionsfläche für eine Drag-n-Drop Funktion dient: Klicken und Ziehen dieser Fläche verschiebt den ganzen Aktions-Bereich.
 
 Das Freistellen im Zusammenspiel mit wechselnder 'Aktiven Markierung' erlaubt es, auch in umfangreichen Datensammlungen vergleichsweise komfortabel TAGs nach Bedarf zu verwalten, da der Aktions-Bereich unabhängig vom Scrolling der Seite ist und die Markierungen immer im Zugriff sind.
 
@@ -170,8 +174,8 @@ Heißen Dank an [Hermann Hartenthaler](https://github.com/hartenthaler/) für di
 <a name="license"></a>
 ## Lizenz
 
-* Copyright (C) 2023/2024 huhwt - EW.H
-* Derived from **webtrees** - Copyright 2024 webtrees development team.
+* Copyright (C) 2023-2025 huhwt - EW.H
+* Derived from **webtrees** - Copyright 2024-2025 webtrees development team.
 
 Dieses Programm ist quelloffen und unterliegt den Bedingungen der GNU General Public License, entweder der Version 3 der Lizenz oder (nach Ihrer Wahl) einer späteren Version.
 

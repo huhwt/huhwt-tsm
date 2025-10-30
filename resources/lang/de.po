@@ -1,4 +1,4 @@
-# webtrees tagging service manager
+# webtrees tagging service manager - Copyright (C) 2025 huhwt
 #
 msgid ""
 msgstr ""
@@ -212,6 +212,18 @@ msgstr "Filter: Datensätze zur Aktiven Markierung in Übersicht zeigen -Ein/Aus
 
 msgid "Filter: hide records for Active Tag in overview"
 msgstr "Filter: Datensätze zur Aktiven Markierung in Übersicht ausblenden -Ein/Aus-"
+
+msgid "Action: push Active Tag to all records in overview"
+msgstr "Aktion: Aktive Markierung allen Datensätzen in Übersicht zuweisen"
+
+msgid "Push to all"
+msgstr "Allen zuweisen"
+
+msgid "Action: remove Active Tag from all records in overview"
+msgstr "Aktion: Aktive Markierung aus allen Datensätzen in Übersicht entfernen"
+
+msgid "Remove from all"
+msgstr "Aus allen entfernen"
 
 msgid "Delete tag from overview and database"
 msgstr "Markierung aus Übersicht und Datenbank löschen"

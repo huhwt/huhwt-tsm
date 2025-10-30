@@ -38,6 +38,20 @@ use HuHwt\WebtreesMods\TaggingServiceManager\Http\RequestHandlers\TSMchooseATag;
         </a>
     </div>
     <div name="TSMfloatHidden">
+        <div>
+            <button id="TSMbtnPushAll" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Action: push Active Tag to all records in overview') ?>"  disabled>
+                <?= view('icons/push-to-all'); ?><span><?= I18N::translate('Push to all'); ?></span>
+            </button>
+        </div>
+    </div>
+    <div name="TSMfloatHidden">
+        <div>
+            <button id="TSMbtnRemoveAll" class="TSMshow_box btn btn-secondary tsm-btn-sm-2" title="<?= I18N::translate('Action: remove Active Tag from all records in overview') ?>"  disabled>
+                <?= view('icons/remove-all'); ?><span><?= I18N::translate('Remove from all'); ?></span>
+            </button>
+        </div>
+    </div>
+    <div name="TSMfloatHidden">
         <button id="TSMbtnRedo" class="btn btn-secondary tsm-btn tsm-btn-sm" type="button" title="<?= I18N::translate('Redo'); ?>" >
             <?= view('icons/redo'); ?><span><?= I18N::translate('Redo'); ?></span>
         </button>
