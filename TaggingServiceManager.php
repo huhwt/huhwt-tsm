@@ -186,7 +186,7 @@ class TaggingServiceManager extends AbstractModule
     ];
 
     // What are the options to delete records in the tagging service?
-    private const EMPTY_FORCE     = 'Deleta all records';
+    private const EMPTY_FORCE     = 'Delete all records';
     private const EMPTY_ALL       = 'all records';
     private const EMPTY_SET       = 'set of records by type';
     private const EMPTY_CREATED   = 'records created by action';
